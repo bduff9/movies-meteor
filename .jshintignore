@@ -6,3 +6,4 @@ public
 .eslintignore
 dist
 **/*.jsx
+main.js
