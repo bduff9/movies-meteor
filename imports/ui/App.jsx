@@ -1,6 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
+
+import Header from './Header';
 import MovieItemsContainer from './MovieItemsContainer';
 
 class App extends Component {
@@ -9,7 +11,12 @@ class App extends Component {
 	}
 
 	render () {
-		return <MovieItemsContainer />;
+		return (
+			<div className="full-coverage">
+				<Header />
+				<MovieItemsContainer />
+			</div>
+		);
 	}
 }
 
