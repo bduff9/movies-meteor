@@ -37,7 +37,7 @@ enum StatusType {
 }
 
 type MovieItem {
-	itemID: Int!
+	itemID: Int! @relation(name: "ItemID") @isUnique
 	orderToWatch: Int
 	itemName: String!
 	caseType: CaseType!
@@ -52,8 +52,8 @@ type MovieItem {
 }
 
 type Movie {
-	movieID: Int!
-	itemID: Int!
+	movieID: Int! @isUnique
+	itemID: Int! @relation(name: "ItemID")
 	movieTitle: String!
 	movieURL: String
 }
