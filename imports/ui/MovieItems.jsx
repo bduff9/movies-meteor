@@ -21,7 +21,7 @@ class MovieItems extends Component {
 	render () {
 		const { data } = this.props;
 		const { loading, movieItems } = data;
-		console.log(this.props);
+
 		return (
 			<Container isFluid>
 				<Columns isGrid isMultiline>
