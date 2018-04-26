@@ -2,69 +2,39 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import { Column, Columns, Container } from 'bloomer';
-import Icon from '@fortawesome/react-fontawesome';
-import faSpinner from '@fortawesome/fontawesome-pro-solid/faSpinner';
+import { List, Map } from 'immutable';
 
-import MovieItem from './MovieItem';
+import MovieItems from './MovieItems';
 
-class MovieItems extends Component {
+class MovieItemsContainer extends Component {
 	constructor (props) {
 		super(props);
+
+		this.state = {};
+	}
+
+	shouldComponentUpdate (nextProps, nextState) {
+		const { filters, sortBy } = this.props;
+
+		if (sortBy !== nextProps.sortBy) return true;
+
+		if (filters !== nextProps.filters) return true;
+
+		return false;
 	}
 
 	render () {
-		const { data } = this.props;
-		const { loading, movieItems } = data;
+		const { filters, sortBy } = this.props;
 
 		return (
-			<Container isFluid>
-				<Columns isGrid isMultiline>
-					{loading ? (
-						<Column isSize="full">
-							<Icon icon={faSpinner} spin />
-								&nbsp; Loading...
-						</Column>
-					)
-						:
-						movieItems && movieItems.map(movieItem => <MovieItem movieItem={movieItem} key={`movie-item-${movieItem.itemID}`} />)}
-				</Columns>
-			</Container>
+			<MovieItems filters={filters} sortBy={sortBy} />
 		);
 	}
 }
 
-MovieItems.propTypes = {
-	data: PropTypes.shape({
-		movieItems: PropTypes.array
-	}).isRequired
+MovieItemsContainer.propTypes = {
+	filters: PropTypes.instanceOf(Map).isRequired,
+	sortBy: PropTypes.instanceOf(List).isRequired,
 };
-
-const allMovieItems = gql`
-	query MovieItemsForDisplay {
-		movieItems {
-			itemID
-			orderToWatch
-			itemName
-			caseType
-			digitalType
-			is3D
-			isWatched
-			formatType
-			itemStatus
-			releaseDate
-			itemURL
-			itemNotes
-		}
-	}
-`;
-
-const MovieItemsContainer = graphql(allMovieItems, {
-	options: {
-		pollInterval: 10000
-	}
-})(MovieItems);
 
 export default MovieItemsContainer;

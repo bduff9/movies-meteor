@@ -17,3 +17,37 @@ body,
 // Pages
 
 // Components
+.is-hoverable {
+  z-index: 1;
+}
+
+.item-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.item-image {
+  padding-left: 20%;
+  padding-right: 20%;
+
+  img {
+    height: 239px;
+  }
+}
+
+.item-attribute {
+  width: 30px;
+  display: inline-block;
+}
+
+.item-uv,
+.item-dc {
+  font-weight: bold;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.item-uv {
+  color: purple;
+}

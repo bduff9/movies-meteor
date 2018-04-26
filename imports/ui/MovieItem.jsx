@@ -1,44 +1,55 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, CardImage, Column, Content, Image } from 'bloomer';
+import { Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, CardImage, Column, Image, Media, MediaContent, MediaLeft } from 'bloomer';
 
-class MovieItem extends Component {
-	constructor (props) {
-		super(props);
-	}
+import { getCaseIcon, getFormatImage, getFormattedDate, getStatusIcon } from '../api/global';
 
-	render () {
-		const { movieItem } = this.props;
-
-		return (
-			<Column isSize="1/4">
-				<Card>
-					<CardHeader>
-						<CardHeaderTitle>{movieItem.itemName}</CardHeaderTitle>
-					</CardHeader>
-					<CardImage>
-						<Image isRatio="4:3" src={movieItem.itemURL} />
-					</CardImage>
-					<CardContent>
-						<Content>
-							Released: {movieItem.releaseDate}
-						</Content>
-					</CardContent>
-					<CardFooter>
-						<CardFooterItem href="javascript:void(0);">Edit</CardFooterItem>
-						{movieItem.isWatched === 'Y' ?
-							<CardFooterItem hasTextColor="success">Watched</CardFooterItem>
-							:
-							<CardFooterItem href="javascript:void(0);">Mark Watched</CardFooterItem>
-						}
-					</CardFooter>
-				</Card>
-			</Column>
-		);
-	}
-}
+/** @type {React.StatelessComponent} */
+const MovieItem = ({ movieItem }) => (
+	<Column className="is-one-fifth">
+		<Card>
+			<CardHeader>
+				<CardHeaderTitle className="item-title" title={movieItem.itemName}>{movieItem.itemName}</CardHeaderTitle>
+			</CardHeader>
+			<CardImage className="item-image">
+				<Image className="is-3by4" src={movieItem.itemURL || 'https://via.placeholder.com/239x180'} />
+			</CardImage>
+			<CardContent>
+				<Media>
+					<MediaLeft>
+						<Image isSize="48x48" src={getFormatImage(movieItem.formatType, movieItem.is3D)} />
+					</MediaLeft>
+					<MediaContent>
+						<span className="item-attribute has-text-centered item-uv" title={movieItem.digitalType}>
+							{movieItem.digitalType.indexOf('UV') > -1 ? 'UV' : null}
+						</span>
+						<span className="item-attribute has-text-centered item-dc" title={movieItem.digitalType}>
+							{movieItem.digitalType.indexOf('DC') > -1 ? 'DC' : null}
+						</span>
+						<span className="item-attribute has-text-centered" title={movieItem.caseType}>
+							{getCaseIcon(movieItem.caseType)}
+						</span>
+						<span className="item-attribute has-text-centered" title={movieItem.itemStatus}>
+							{getStatusIcon(movieItem.itemStatus)}
+						</span>
+						<br />
+						<small>{getFormattedDate(movieItem.releaseDate)}</small>
+					</MediaContent>
+				</Media>
+			</CardContent>
+			<CardFooter>
+				<CardFooterItem href="javascript:void(0);" onClick={null}>Edit</CardFooterItem>
+				{movieItem.isWatched === 'Y' ?
+					<CardFooterItem hasTextColor="success">Watched</CardFooterItem>
+					:
+					<CardFooterItem href="javascript:void(0);" onClick={null}>Mark Watched</CardFooterItem>
+				}
+			</CardFooter>
+		</Card>
+	</Column>
+);
 
 MovieItem.propTypes = {
 	movieItem: PropTypes.object.isRequired
