@@ -1,8 +1,9 @@
 'use strict';
 
 import React from 'react';
-import { Hero, HeroHeader, Navbar, NavbarBrand, NavbarEnd, NavbarItem } from 'bloomer';
+import { Hero, HeroHeader, Navbar, NavbarBrand, NavbarEnd, NavbarItem, NavbarMenu } from 'bloomer';
 
+/** @type {React.StatelessComponent} */
 const Header = () => {
 	return (
 		<Hero>
@@ -11,13 +12,17 @@ const Header = () => {
 					<NavbarBrand>
 						<NavbarItem>Media Tracker</NavbarItem>
 					</NavbarBrand>
-					<NavbarEnd>
-						<NavbarItem href="javascript:void(0);">Home</NavbarItem>
-					</NavbarEnd>
+					<NavbarMenu>
+						<NavbarEnd>
+							<NavbarItem href="javascript:void(0);"></NavbarItem>
+						</NavbarEnd>
+					</NavbarMenu>
 				</Navbar>
 			</HeroHeader>
 		</Hero>
 	);
 };
+
+Header.propTypes = {};
 
 export default Header;
