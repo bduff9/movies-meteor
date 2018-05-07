@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@types/meteor": "1.4.15",
+    "@types/react-fontawesome": "1.6.3",
     "autoprefixer": "8.4.1",
     "babel-eslint": "8.2.3",
     "eslint": "4.19.1",

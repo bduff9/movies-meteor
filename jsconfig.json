@@ -3,8 +3,10 @@
 		"allowSyntheticDefaultImports": true,
 		"checkJs": true,
 		"experimentalDecorators": true,
-		"types": [
-			"node"
-		]
-	}
+		"jsx": "react"
+	},
+	"exclude": [
+		"node_modules",
+		"**/node_modules/*",
+	],
 }
