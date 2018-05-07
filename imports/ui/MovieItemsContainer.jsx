@@ -24,17 +24,14 @@ class MovieItemsContainer extends Component {
 	}
 
 	render () {
-		const { filters, sortBy } = this.props;
-
-		return (
-			<MovieItems filters={filters} sortBy={sortBy} />
-		);
+		return <MovieItems {...this.props} />;
 	}
 }
 
 MovieItemsContainer.propTypes = {
 	filters: PropTypes.instanceOf(Map).isRequired,
 	sortBy: PropTypes.instanceOf(List).isRequired,
+	selectMovieItem: PropTypes.func.isRequired,
 };
 
 export default MovieItemsContainer;

@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { List, Map } from 'immutable';
 
+import EditMovieItem from './EditMovieItem';
 import Filters from './Filters';
 import Header from './Header';
 import MovieItemsContainer from './MovieItemsContainer';
@@ -13,27 +14,36 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			sortBy: List(['ITEMID', 'ASC']),
+			currentMovieItem: null,
 			filterOpen: false,
-			filters: Map()
+			filters: Map(),
+			sortBy: List(['ITEMID', 'ASC']),
 		};
-
-		this._toggleFilters = this._toggleFilters.bind(this);
 	}
 
-	_toggleFilters () {
+	_selectMovieItem = newMovieItem => {
+		this.setState({ currentMovieItem: newMovieItem });
+	}
+
+	_toggleFilters = () => {
 		this.setState(prevState => ({ filterOpen: !prevState.filterOpen }));
 	}
 
 	render () {
-		const { filterOpen, filters, sortBy } = this.state;
+		const { currentMovieItem, filterOpen, filters, sortBy } = this.state;
 
 		return (
 			<div className="full-coverage">
 				<Header />
-				<Toolbar sortBy={sortBy} toggleFilters={this._toggleFilters} />
-				{filterOpen ? <Filters filters={filters} /> : null}
-				<MovieItemsContainer filters={filters} sortBy={sortBy} />
+				{currentMovieItem === null ? [
+					<Toolbar sortBy={sortBy} toggleFilters={this._toggleFilters} key="toolbar" />,
+					(filterOpen && <Filters filters={filters} key="filters" />),
+					<MovieItemsContainer filters={filters} sortBy={sortBy} selectMovieItem={this._selectMovieItem} key="movie-items-container" />,
+				]
+					:
+					(
+						<EditMovieItem itemID={currentMovieItem} selectMovieItem={this._selectMovieItem} />
+					)}
 			</div>
 		);
 	}
