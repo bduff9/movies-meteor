@@ -10,7 +10,7 @@ const db = new Sequelize('media_tracker', userName, password, {
 	host,
 	port,
 	dialect: 'mysql',
-	operatorsAliases: false
+	operatorsAliases: false,
 });
 
 // Define the models
@@ -25,7 +25,7 @@ const MovieItemModel = db.define('movitems', {
 	orderToWatch: {
 		field: 'ORDERED',
 		type: Sequelize.INTEGER,
-		allowNull: false,
+		allowNull: true,
 		unique: true,
 	},
 	itemName: {
@@ -33,7 +33,7 @@ const MovieItemModel = db.define('movitems', {
 		type: Sequelize.STRING(99),
 		allowNull: false,
 		validate: {
-			not: ['^The\s.*$', 'i'],
+			not: ['^The .*$', 'i'],
 		},
 	},
 	caseType: {
@@ -112,7 +112,7 @@ const MovieItemModel = db.define('movitems', {
 					});
 			}
 		},
-	}
+	},
 });
 
 const MovieModel = db.define('movies', {
@@ -133,7 +133,7 @@ const MovieModel = db.define('movies', {
 		type: Sequelize.STRING(99),
 		allowNull: true,
 		validate: {
-			not: ['^The\s.*$', 'i'],
+			not: ['^The .*$', 'i'],
 		},
 	},
 	movieURL: {
@@ -145,7 +145,7 @@ const MovieModel = db.define('movies', {
 		},
 	},
 }, {
-	timestamps: false
+	timestamps: false,
 });
 
 MovieModel.belongsTo(MovieItemModel, { foreignKey: 'ITEMID' });

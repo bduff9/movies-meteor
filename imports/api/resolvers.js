@@ -35,18 +35,17 @@ const resolvers = {
 		},
 
 		markMovieWatched (_, { itemID }) {
-			return MovieItem.update({ ITEMWATCH: 'Y', ORDERED: null }, { where: { ITEMID: itemID }, individualHooks: true })
-				.then(([count, rows]) => {
-					if (count === 0) return null;
+			return MovieItem.findById(itemID)
+				.then(movieItem => {
+					movieItem.orderToWatch = null;
+					movieItem.isWatched = 'Y';
 
-					if (count > 1) console.warn(`Expected 1 row to change, instead ${count} rows changed`);
-
-					return rows[0];
+					return movieItem.save();
 				});
 		},
 
 		updateMovieItem (_, { itemID, ...values }) {
-			return MovieItem.update(values, { where: { ITEMID: itemID }, individualHooks: true })
+			return MovieItem.update(values, { where: { itemID }, individualHooks: true })
 				.then(([count, rows]) => {
 					if (count === 0) return null;
 

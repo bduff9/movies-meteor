@@ -10,9 +10,9 @@ const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers,
 	allowUndefinedInResolve: false,
-	logger: { log: err => console.error('GraphQL Custom Logger', err) }
+	logger: { log: err => console.error('GraphQL Custom Logger', err) },
 });
 
 createApolloServer({
-	schema
+	schema,
 });
