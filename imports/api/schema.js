@@ -77,6 +77,8 @@ type Mutation {
 		itemNotes: String
 	): MovieItem
 
+	markMovieWatched (itemID: String!): MovieItem
+
 	updateMovieItem (
 		itemID: Int!,
 		orderToWatch: Int,

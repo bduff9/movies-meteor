@@ -16,7 +16,7 @@ const resolvers = {
 			if (formatType === 'Ultra HD') return 'UltraHD';
 
 			return formatType;
-		}
+		},
 	},
 
 	Query: {
@@ -26,7 +26,7 @@ const resolvers = {
 
 		movieItems (_, args) {
 			return MovieItem.findAll({ where: args });
-		}
+		},
 	},
 
 	Mutation: {
@@ -34,8 +34,19 @@ const resolvers = {
 			return MovieItem.create(args);
 		},
 
-		updateMovieItem (_, args) {
-			return MovieItem.update(args, { where: { ITEMID: args.itemID }, individualHooks: true })
+		markMovieWatched (_, { itemID }) {
+			return MovieItem.update({ ITEMWATCH: 'Y', ORDERED: null }, { where: { ITEMID: itemID }, individualHooks: true })
+				.then(([count, rows]) => {
+					if (count === 0) return null;
+
+					if (count > 1) console.warn(`Expected 1 row to change, instead ${count} rows changed`);
+
+					return rows[0];
+				});
+		},
+
+		updateMovieItem (_, { itemID, ...values }) {
+			return MovieItem.update(values, { where: { ITEMID: itemID }, individualHooks: true })
 				.then(([count, rows]) => {
 					if (count === 0) return null;
 
@@ -51,8 +62,8 @@ const resolvers = {
 
 		updateMovie (_, args) {
 			return Movie.update(args);
-		}
-	}
+		},
+	},
 };
 
 export default resolvers;
