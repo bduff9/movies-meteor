@@ -34,18 +34,18 @@ const resolvers = {
 			return MovieItem.create(args);
 		},
 
-		markMovieWatched (_, { itemID }) {
-			return MovieItem.findById(itemID)
+		markMovieWatched (_, { id, isWatched }) {
+			return MovieItem.findById(id)
 				.then(movieItem => {
 					movieItem.orderToWatch = null;
-					movieItem.isWatched = 'Y';
+					movieItem.isWatched = isWatched || 'Y';
 
 					return movieItem.save();
 				});
 		},
 
-		updateMovieItem (_, { itemID, ...values }) {
-			return MovieItem.update(values, { where: { itemID }, individualHooks: true })
+		updateMovieItem (_, { id, ...values }) {
+			return MovieItem.update(values, { where: { id }, individualHooks: true })
 				.then(([count, rows]) => {
 					if (count === 0) return null;
 

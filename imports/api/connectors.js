@@ -15,7 +15,7 @@ const db = new Sequelize('media_tracker', userName, password, {
 
 // Define the models
 const MovieItemModel = db.define('movitems', {
-	itemID: {
+	id: {
 		field: 'ITEMID',
 		type: Sequelize.INTEGER(11).UNSIGNED,
 		allowNull: false,
@@ -101,6 +101,7 @@ const MovieItemModel = db.define('movitems', {
 		afterSave: (movieItem, options) => {
 			if (movieItem.isWatched === 'Y' && movieItem.orderToWatch != null) {
 				movieItem.orderToWatch = null;
+				return movieItem.save();
 			} else if (movieItem.isWatched === 'N' && movieItem.orderToWatch == null) {
 				return MovieItem.findAll({ attributes: [[Sequelize.fn('MAX', Sequelize.col('ORDERED')), 'MAX_ORDERED']] })
 					.then(results => {
@@ -109,6 +110,8 @@ const MovieItemModel = db.define('movitems', {
 						if (results.length > 0 && results[0].get('MAX_ORDERED')) newOrder = results[0].get('MAX_ORDERED') + 1;
 
 						movieItem.orderToWatch = newOrder;
+
+						return movieItem.save();
 					});
 			}
 		},
@@ -116,7 +119,7 @@ const MovieItemModel = db.define('movitems', {
 });
 
 const MovieModel = db.define('movies', {
-	movieID: {
+	id: {
 		field: 'MOVIEID',
 		type: Sequelize.INTEGER.UNSIGNED,
 		allowNull: false,

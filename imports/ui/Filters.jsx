@@ -15,7 +15,7 @@ const Filters = ({ filters }) => {
 };
 
 Filters.propTypes = {
-	filters: PropTypes.instanceOf(Map).isRequired
+	filters: PropTypes.instanceOf(Map).isRequired,
 };
 
 export default Filters;

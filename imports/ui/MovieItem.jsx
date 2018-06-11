@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import { Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, CardImage, Column, Image, Media, MediaContent, MediaLeft } from 'bloomer';
 
 import { getCaseIcon, getFormatImage, getFormattedDate, getStatusIcon } from '../api/global';
+import ToggleMovieItemWatched from './ToggleMovieItemWatched';
 
 /** @type {React.StatelessComponent} */
 const MovieItem = ({ movieItem, selectMovieItem }) => {
 	const selectThisMovieItem = ev => {
-		selectMovieItem(movieItem.itemID);
+		selectMovieItem(movieItem.id);
 	};
 
 	return (
@@ -46,11 +47,7 @@ const MovieItem = ({ movieItem, selectMovieItem }) => {
 				</CardContent>
 				<CardFooter>
 					<CardFooterItem href="javascript:void(0);" onClick={selectThisMovieItem}>Edit</CardFooterItem>
-					{movieItem.isWatched === 'Y' ?
-						<CardFooterItem hasTextColor="success">Watched</CardFooterItem>
-						:
-						<CardFooterItem href="javascript:void(0);" onClick={null}>Mark Watched</CardFooterItem>
-					}
+					<ToggleMovieItemWatched isWatched={movieItem.isWatched === 'Y'} itemID={movieItem.id} />
 				</CardFooter>
 			</Card>
 		</Column>
