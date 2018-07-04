@@ -37,7 +37,7 @@ enum StatusType {
 }
 
 type MovieItem {
-	itemID: Int! @relation(name: "ItemID") @isUnique
+	id: Int! @relation(name: "ItemID") @isUnique
 	orderToWatch: Int
 	itemName: String!
 	caseType: CaseType!
@@ -52,7 +52,7 @@ type MovieItem {
 }
 
 type Movie {
-	movieID: Int! @isUnique
+	id: Int! @isUnique
 	itemID: Int! @relation(name: "ItemID")
 	movieTitle: String!
 	movieURL: String
@@ -77,10 +77,10 @@ type Mutation {
 		itemNotes: String
 	): MovieItem
 
-	markMovieWatched (itemID: Int!): MovieItem
+	markMovieWatched (id: Int!, isWatched: String!): MovieItem
 
 	updateMovieItem (
-		itemID: Int!,
+		id: Int!,
 		orderToWatch: Int,
 		itemName: String,
 		caseType: CaseType,
@@ -101,7 +101,7 @@ type Mutation {
 	): Movie
 
 	updateMovie (
-		movieID: Int!,
+		id: Int!,
 		itemID: Int,
 		movieTitle: String,
 		movieURL: String

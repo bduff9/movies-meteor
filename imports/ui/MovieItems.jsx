@@ -37,7 +37,7 @@ class MovieItems extends Component {
 							</Column>
 						)
 							:
-							movieItems && movieItems.map(movieItem => <MovieItem movieItem={movieItem} view={view} selectMovieItem={selectMovieItem} key={`movie-item-${movieItem.itemID}`} />)}
+							movieItems && movieItems.map(movieItem => <MovieItem movieItem={movieItem} view={view} selectMovieItem={selectMovieItem} key={`movie-item-${movieItem.id}`} />)}
 					</Columns>
 				</MovieItemGridContainer>
 			);
@@ -60,7 +60,7 @@ MovieItems.propTypes = {
 const allMovieItems = gql`
 	query MovieItemsForDisplay {
 		movieItems {
-			itemID
+			id
 			orderToWatch
 			itemName
 			caseType
