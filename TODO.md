@@ -2,6 +2,9 @@
 
 ## Database
 
+- Custom scalars in GraphQL
+  - https://blog.usejournal.com/top-5-graphql-scalars-3f8a38965b53
+
 ## Client
 
 - Update Bulma to latest
