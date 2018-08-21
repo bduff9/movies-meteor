@@ -27,7 +27,7 @@
     "@fortawesome/fontawesome-pro-solid": "5.0.13",
     "@fortawesome/react-fontawesome": "0.0.20",
     "apollo-cache-inmemory": "1.2.2",
-    "apollo-client": "2.3.2",
+    "apollo-client": "2.4.0",
     "apollo-link-http": "1.5.4",
     "bloomer": "0.6.3",
     "body-parser": "1.18.3",
