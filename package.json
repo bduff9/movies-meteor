@@ -19,7 +19,7 @@
     "test": "meteor test --driver-package=practicalmeteor:mocha --port=3004"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-beta.49",
+    "@babel/runtime": "7.0.0-rc.2",
     "@fortawesome/fontawesome": "1.1.8",
     "@fortawesome/fontawesome-free-brands": "5.0.13",
     "@fortawesome/fontawesome-pro-light": "5.0.13",
