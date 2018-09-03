@@ -21,7 +21,7 @@
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",
     "@fortawesome/fontawesome-pro": "5.3.1",
-    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/fontawesome-svg-core": "1.2.4",
     "@fortawesome/free-brands-svg-icons": "5.3.1",
     "@fortawesome/free-regular-svg-icons": "5.3.1",
     "@fortawesome/pro-light-svg-icons": "5.3.1",
@@ -36,7 +36,7 @@
     "bulma_scss": "0.7.1-beta.2",
     "bulmaswatch": "0.7.1",
     "express": "4.16.3",
-    "graphql": "^0.13.0",
+    "graphql": "0.13.2",
     "graphql-server-express": "1.4.0",
     "graphql-tag": "2.9.2",
     "graphql-tools": "3.1.1",
@@ -60,8 +60,8 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-react": "7.11.1",
     "jshint": "2.9.6",
-    "postcss": "^6.0.22",
-    "postcss-load-config": "^1.2.0"
+    "postcss": "6.0.23",
+    "postcss-load-config": "1.2.0"
   },
   "postcss": {
     "plugins": {
