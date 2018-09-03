@@ -7,3 +7,4 @@ public
 dist
 **/*.jsx
 main.js
+imports/api/global.js
