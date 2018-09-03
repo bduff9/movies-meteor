@@ -6,8 +6,7 @@ import { List, Map } from 'immutable';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Column, Columns } from 'bloomer';
-import Icon from '@fortawesome/react-fontawesome';
-import fasSpinner from '@fortawesome/fontawesome-pro-solid/faSpinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import MovieItem from './MovieItem';
 import MovieItemGridContainer from './MovieItemGridContainer';
@@ -32,7 +31,7 @@ class MovieItems extends Component {
 					<Columns isGrid isMultiline>
 						{loading ? (
 							<Column isSize="full">
-								<Icon icon={fasSpinner} spin />
+								<FontAwesomeIcon icon="spinner" spin />
 							&nbsp; Loading...
 							</Column>
 						)

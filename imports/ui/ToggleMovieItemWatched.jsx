@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { CardFooterItem } from 'bloomer';
-import Icon from '@fortawesome/react-fontawesome';
-import fasSpinner from '@fortawesome/fontawesome-pro-solid/faSpinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const toggleWatched = gql`
 mutation markMovieWatched($id: Int!, $isWatched: String!) {
@@ -58,7 +57,7 @@ const ToggleMovieItemWatched = ({ isWatched, itemID }) => {
 							},
 						});
 					}}>
-					{loading ? <Icon icon={fasSpinner} spin /> : error ? 'Error!' : text}
+					{loading ? <FontAwesomeIcon icon="spinner" spin /> : error ? 'Error!' : text}
 				</CardFooterItem>
 			)}
 		</Mutation>

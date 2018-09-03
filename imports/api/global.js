@@ -2,29 +2,20 @@
 
 import React from 'react';
 import moment from 'moment';
-import Icon from '@fortawesome/react-fontawesome';
-import fasSquare from '@fortawesome/fontawesome-pro-solid/faSquare';
-import fasBox from '@fortawesome/fontawesome-pro-solid/faBox';
-import farSquare from '@fortawesome/fontawesome-pro-regular/faSquare';
-import farBook from '@fortawesome/fontawesome-pro-regular/faBook';
-import fasBook from '@fortawesome/fontawesome-pro-solid/faBook';
-import fasCheck from '@fortawesome/fontawesome-pro-solid/faCheck';
-import farMoney from '@fortawesome/fontawesome-pro-regular/faMoneyBillAlt';
-import farClipboard from '@fortawesome/fontawesome-pro-regular/faClipboardList';
-import fasTruck from '@fortawesome/fontawesome-pro-solid/faTruck';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const getCaseIcon = caseType => {
 	switch (caseType) {
 		case 'Plain':
-			return <Icon icon={fasSquare} className="has-text-primary" title={caseType} />;
+			return <FontAwesomeIcon icon="square" className="has-text-primary" title={caseType} />;
 		case 'Box':
-			return <Icon icon={fasBox} className="has-text-primary" title={caseType} />;
+			return <FontAwesomeIcon icon="box" className="has-text-primary" title={caseType} />;
 		case 'Slipcover':
-			return <Icon icon={farSquare} className="has-text-primary" title={caseType} />;
+			return <FontAwesomeIcon icon={['far', 'square']} className="has-text-primary" title={caseType} />;
 		case 'Digibook':
-			return <Icon icon={farBook} className="has-text-primary" title={caseType} />;
+			return <FontAwesomeIcon icon={['far', 'book']} className="has-text-primary" title={caseType} />;
 		case 'Steelbook':
-			return <Icon icon={fasBook} className="has-text-primary" title={caseType} />;
+			return <FontAwesomeIcon icon="book" className="has-text-primary" title={caseType} />;
 		default:
 			console.error('Invalid case type passed', caseType);
 			return null;
@@ -48,13 +39,13 @@ export const getFormattedDate = dateStr => {
 export const getStatusIcon = status => {
 	switch (status) {
 		case 'Owned':
-			return <Icon icon={fasCheck} className="has-text-success" title={status} />;
+			return <FontAwesomeIcon icon="check" className="has-text-success" title={status} />;
 		case 'Selling':
-			return <Icon icon={farMoney} className="has-text-success" title={status} />;
+			return <FontAwesomeIcon icon={['far', 'money-bill-alt']} className="has-text-success" title={status} />;
 		case 'Wanted':
-			return <Icon icon={farClipboard} className="" title={status} />;
+			return <FontAwesomeIcon icon={['far', 'clipboard']} className="" title={status} />;
 		case 'Waiting':
-			return <Icon icon={fasTruck} className="" title={status} />;
+			return <FontAwesomeIcon icon="truck" className="" title={status} />;
 		default:
 			console.error('Invalid status passed', status);
 			return null;

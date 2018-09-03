@@ -4,12 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import { Navbar, NavbarDropdown, NavbarEnd, NavbarItem, NavbarLink, NavbarMenu, NavbarStart } from 'bloomer';
-import Icon from '@fortawesome/react-fontawesome';
-import fasPlus from '@fortawesome/fontawesome-pro-solid/faPlus';
-import fasThLarge from '@fortawesome/fontawesome-pro-solid/faThLarge';
-import fasSearch from '@fortawesome/fontawesome-pro-solid/faSearch';
-import fasSort from '@fortawesome/fontawesome-pro-solid/faSort';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /** @type {React.StatelessComponent} */
 const Toolbar = ({ toggleFilters }) => (
@@ -24,11 +19,11 @@ const Toolbar = ({ toggleFilters }) => (
 			</NavbarStart>
 			<NavbarEnd>
 				<NavbarItem href="javascript:void(0);" onClick={null}>
-					<Icon icon={fasPlus} />
+					<FontAwesomeIcon icon="plus" />
 				</NavbarItem>
 				<NavbarItem hasDropdown isHoverable>
 					<NavbarLink href="javascript:void(0);">
-						<Icon icon={fasThLarge} />
+						<FontAwesomeIcon icon="th-large" />
 					</NavbarLink>
 					<NavbarDropdown>
 						{/*TODO: Show current with check */}
@@ -38,11 +33,11 @@ const Toolbar = ({ toggleFilters }) => (
 					</NavbarDropdown>
 				</NavbarItem>
 				<NavbarItem href="javascript:void(0);" onClick={toggleFilters}>
-					<Icon icon={fasSearch} />
+					<FontAwesomeIcon icon="search" />
 				</NavbarItem>
 				<NavbarItem hasDropdown isHoverable>
 					<NavbarLink href="javascript:void(0);">
-						<Icon icon={fasSort} />
+						<FontAwesomeIcon icon="sort" />
 					</NavbarLink>
 					<NavbarDropdown>
 						{/*TODO: Show current with check, add more?, handle ASC/DESC */}
