@@ -7,7 +7,7 @@ import { Box } from 'bloomer';
 
 /** @type {React.StatelessComponent} */
 const Filters = ({ filters }) => {
-	const { itemID } = filters;
+	const { itemID: UUitemID } = filters;
 
 	return (
 		<Box>TODO: filters</Box>

@@ -53,7 +53,7 @@ const Toolbar = ({ toggleFilters }) => (
 
 Toolbar.propTypes = {
 	sortBy: PropTypes.instanceOf(List).isRequired,
-	toggleFilters: PropTypes.func.isRequired
+	toggleFilters: PropTypes.func.isRequired,
 };
 
 export default Toolbar;
