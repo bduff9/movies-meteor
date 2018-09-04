@@ -3,7 +3,7 @@ node_js:
 - stable
 before_install:
 - npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-- secure: "FA0b9pcOLWJZ0IBXNrhHUsG+qEFRaK07BXNsffTI/HA1u4VCaNDtes/tIxbEhwLHvIkbzex0yCk8G3/n6aQJN5ssbYQMPvu6FyUvwY3VJMISEqk33LhEhfnY7h2QSzUemF/7SwkD51isPUQNZ+7CZZud9/eFYqSQyOucyw+N/DpXK+F2MH2YxEKwETGkNsAdDGX+sggCxVP7hrzfJ3ZcXuJzOadZcTS/rw52o6iV9QhqQ++MCTUJ3RVpsc2PGbvhSEa9Es1TTyUjlRqrys1QUCz5OZJZpUGQzU7zifd3fpRGwhVHwqELPlf/X9w+rHR1abIVW6h6crJTMBqhgsHaZmctu2emmEZkIbomREiSbE7is1Pkd/BvG02EAUIhino8Z8zb+vT0ftP1kRjaMWY/gNuY/NBcEbVVD2315/x5Zo1z2axYM2thQV7zF6yFKs5RAPMFZQpzSQbq8YfmH07bBJpb374xpNDMYrcgjsuo2RfyxiZoJdzIo0uIlqOZsp7GXTV8YrnB8Ki2vZ9KtBuISKyTZToMjVHw692XAlubVWjRHkWCJY2BpmzFLKVmny+4XKduLXlOiqnYk74InFshzYsdvQ7CNI3Y/4kNDS0zWJYEFZyMc4Oc2wAaT3HvpHH4YkgyRLkal8r3hDr+tRc8d63N+2S/uDW5PqHnDg/edlg="
+- npm config set "//npm.fontawesome.com/:_authToken" $NPM_FA_TOKEN
 before_script:
 - curl https://install.meteor.com | /bin/sh
 - export PATH=$HOME/.meteor:$PATH
