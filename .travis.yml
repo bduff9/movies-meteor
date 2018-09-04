@@ -11,7 +11,8 @@ cache:
   directories:
   - node_modules
 script:
-  - npm run lint
+  - meteor npm run lint
+  - meteor npm test
 notifications:
   slack:
     rooms:
