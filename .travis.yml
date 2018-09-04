@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- stable
+before_script:
+- curl https://install.meteor.com | /bin/sh
+- export PATH=$HOME/.meteor:$PATH
+cache:
+  directories:
+  - node_modules
+script:
+- npm run lint
+- npm test
+notifications:
+  slack:
+    rooms:
+      secure: eVvAfABcW8AuAEx0iNQ/VwhNd5UsDEzUJDg7ChM8XKaanCa86vwmaTBRwOc3cYPW+ajnitazRwIWqq1KjE3EaVdFUZQTjon8XZLnphahVEsCwCsYgkA5S1Ox4QzSa09CL3x3IxQldMVXqIkEUGn2Q4IAVDq/+hShtTUl7Qo1PkkQcbDDf4bc02qDA04WhkXXnMGGsurOPFeqjAF6+QMWSRNhDMj7T4ABikKOYkj33lW2q4TH2bw/wS+E0r4sjFVGLexw+cZm+e219JeiFHRzjxd0wlZC6Kx2vn6tpHW2kW6KeVopHb0BvEKeHHiU2U36bF24DDC/MCNwAgp0crskgogL4TLXl8+H2/ApbD8dH1fw/If7iyHIcmiaudmo+acEi2CgjihKloqbQEmauTw9phQa/f+iEDsH8QHdZQwMZKRXMzTMo8ZNLEWvI9zGIt2o0ukN5rft0QmVV/SBBUpHipViCALnm30Vd136ea1sOl1Ruxkp6F5ZqqMs4qBKXv/umI9M7N8XlV3LF/1pCM68GpONVjUQvyUMnUID7bLqCmFrscI1YOZvwRjLN+oos6UjOKIQLQYOgbuCPSg04x0Exg/mRdvtZ8Ag71G9dybfFyQ91QTsGoXdgIx3Jdlp5WcLSsj3wysyBf7XJRWQSR+BTAUfr0Cwi5x55WuxUqQeDQw=
