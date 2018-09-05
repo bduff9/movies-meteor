@@ -1,2 +1,1 @@
 settings*.json filter=git-crypt diff=git-crypt
-secretfile.txt filter=git-crypt diff=git-crypt

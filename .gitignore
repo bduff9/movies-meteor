@@ -1,5 +1,4 @@
 node_modules/
-settings*.json
 .vscode/
 .gitsecret/keys/random_seed
 .coveralls.yml
