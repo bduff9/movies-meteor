@@ -2,8 +2,11 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"checkJs": true,
+		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"jsx": "react"
+		"jsx": "react",
+		"moduleResolution": "node",
+		"strict": true,
 	},
 	"exclude": [
 		"node_modules",
