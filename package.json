@@ -17,8 +17,9 @@
     "debug-brk": "meteor run --inspect-brk --settings settings.json",
     "debug-old": "meteor debug --settings settings.json",
     "lint": "eslint \"**/*.js\" \"**/*.jsx\"",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "test_meteor": "meteor test --driver-package=practicalmeteor:mocha --port=3004"
+    "test": "jest --watch",
+    "test:wcoverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:meteor": "meteor test --driver-package=practicalmeteor:mocha --port=3004"
   },
   "dependencies": {
     "@babel/runtime": "7.1.5",

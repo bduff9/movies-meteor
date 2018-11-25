@@ -13,7 +13,7 @@ describe('MovieItems', () => {
 		wrapper = shallow(<MovieItems />);
 	});
 
-	it('contains a div', () => {
-		expect(wrapper.find('div').length).toEqual(1);
+	it('exists', () => {
+		expect(wrapper.exists()).toBe(true);
 	});
 });

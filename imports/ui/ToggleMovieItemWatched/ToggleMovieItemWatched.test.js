@@ -13,7 +13,7 @@ describe('ToggleMovieItemWatched', () => {
 		wrapper = shallow(<ToggleMovieItemWatched isWatched={false} itemID={0} />);
 	});
 
-	it('contains a div', () => {
-		expect(wrapper.find('div').length).toEqual(1);
+	it('exists', () => {
+		expect(wrapper.exists()).toBe(true);
 	});
 });

@@ -14,7 +14,7 @@ describe('App', () => {
 		wrapper = shallow(<MovieItemsContainer filters={Map()} sortBy={List()} selectMovieItem={() => null} />);
 	});
 
-	it('contains a div', () => {
-		expect(wrapper.find('div').length).toEqual(1);
+	it('exists', () => {
+		expect(wrapper.exists()).toBe(true);
 	});
 });

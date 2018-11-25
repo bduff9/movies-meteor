@@ -10,10 +10,10 @@ describe('MovieItem', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallow(<MovieItem movieItem={{ id: 0 }} selectMovieItem={() => null} />);
+		wrapper = shallow(<MovieItem movieItem={{ id: 0, is3D: 'N', isWatched: 'N', itemName: '', itemStatus: 'Owned', releaseDate: '1970-01-01', formatType: 'Ultra HD', digitalType: 'UV', caseType: 'Slipcover', itemURL: '' }} view="grid" selectMovieItem={() => null} />);
 	});
 
-	it('contains a div', () => {
-		expect(wrapper.find('div').length).toEqual(1);
+	it('exists', () => {
+		expect(wrapper.exists()).toBe(true);
 	});
 });

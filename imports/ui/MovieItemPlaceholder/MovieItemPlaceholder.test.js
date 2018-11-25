@@ -13,7 +13,7 @@ describe('MovieItemPlaceholder', () => {
 		wrapper = shallow(<MovieItemPlaceholder title={'Test Title'} />);
 	});
 
-	it('contains a div', () => {
-		expect(wrapper.find('div').length).toEqual(1);
+	it('contains an svg', () => {
+		expect(wrapper.find('svg').length).toEqual(1);
 	});
 });

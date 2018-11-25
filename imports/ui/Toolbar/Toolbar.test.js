@@ -14,7 +14,7 @@ describe('Toolbar', () => {
 		wrapper = shallow(<Toolbar sortBy={List()} toggleFilters={ev => null} />);
 	});
 
-	it('contains a div', () => {
-		expect(wrapper.find('div').length).toEqual(1);
+	it('exists', () => {
+		expect(wrapper.exists()).toBe(true);
 	});
 });
