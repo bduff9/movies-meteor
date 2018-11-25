@@ -43,7 +43,7 @@
     "express": "4.16.4",
     "graphql": "^0.13.1",
     "graphql-tag": "2.10.0",
-    "graphql-tools": "3.1.1",
+    "graphql-tools": "4.0.3",
     "immutable": "3.8.2",
     "meteor-node-stubs": "0.4.1",
     "mysql2": "1.6.4",
