@@ -53,7 +53,7 @@
     "styled-components": "4.1.1"
   },
   "devDependencies": {
-    "@types/meteor": "1.4.20",
+    "@types/meteor": "1.4.21",
     "@types/react-fontawesome": "1.6.4",
     "@types/sequelize": "4.27.31",
     "autoprefixer": "9.3.1",
