@@ -1,5 +1,3 @@
-'use strict';
-
 import { Container } from 'bloomer';
 import styled from 'styled-components';
 

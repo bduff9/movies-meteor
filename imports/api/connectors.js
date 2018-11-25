@@ -1,5 +1,3 @@
-'use strict';
-
 import { Meteor } from 'meteor/meteor';
 import Sequelize from 'sequelize';
 
@@ -97,7 +95,6 @@ const MovieItemModel = db.define('movitems', {
 }, {
 	timestamps: false,
 	hooks: {
-		// @ts-ignore
 		afterSave: (movieItem, options) => {
 			if (movieItem.isWatched === 'Y' && movieItem.orderToWatch != null) {
 				movieItem.orderToWatch = null;

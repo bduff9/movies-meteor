@@ -1,24 +1,40 @@
-'use strict';
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { List, Map } from 'immutable';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Column, Columns } from 'bloomer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import MovieItem from './MovieItem';
-import MovieItemGridContainer from './MovieItemGridContainer';
+import './movie-items.css';
 
+import MovieItem from '../MovieItem/MovieItem';
+import MovieItemGridContainer from '../styled-components/MovieItemGridContainer';
+
+/**
+ * @typedef {{
+ *  data: {
+ *    loading: boolean,
+ *    movieItems: import('../../api/models').MovieItem[],
+ *  },
+ *  filters: import('immutable').Map<any, any>,
+ *  sortBy: import('immutable').List<string>,
+ *  selectMovieItem: (id: number?) => void,
+ * }} Props
+ */
+
+/**
+ * @typedef {typeof initialState} State
+ */
+
+const initialState = {
+	view: 'grid',
+};
+
+/**
+ * @extends {Component<Props, State>}
+ */
 class MovieItems extends Component {
-	constructor (props) {
-		super(props);
 
-		this.state = {
-			view: 'grid',
-		};
-	}
+	state = initialState;
 
 	render () {
 		const { view } = this.state;
@@ -46,16 +62,6 @@ class MovieItems extends Component {
 	}
 }
 
-MovieItems.propTypes = {
-	data: PropTypes.shape({
-		loading: PropTypes.bool.isRequired,
-		movieItems: PropTypes.array,
-	}).isRequired,
-	filters: PropTypes.instanceOf(Map).isRequired,
-	sortBy: PropTypes.instanceOf(List).isRequired,
-	selectMovieItem: PropTypes.func.isRequired,
-};
-
 const allMovieItems = gql`
 	query MovieItemsForDisplay {
 		movieItems {
@@ -75,8 +81,12 @@ const allMovieItems = gql`
 	}
 `;
 
+/**
+ * @constructs {React.StatelessComponent<Props>}
+ */
 export default graphql(allMovieItems, {
 	options: {
 		pollInterval: 10000,
 	},
+	// @ts-ignore
 })(MovieItems);

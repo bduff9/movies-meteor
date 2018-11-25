@@ -1,11 +1,10 @@
-'use strict';
-
 import React from 'react';
-import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { CardFooterItem } from 'bloomer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import './toggle-movie-item-watched.css';
 
 const toggleWatched = gql`
 mutation markMovieWatched($id: Int!, $isWatched: String!) {
@@ -17,17 +16,23 @@ mutation markMovieWatched($id: Int!, $isWatched: String!) {
 }
 `;
 
-/** @type {React.StatelessComponent} */
+/**
+ * @typedef {{ isWatched: boolean, itemID: number }} Props
+ */
+
+/**
+ * @type {React.StatelessComponent<Props>}
+ */
 const ToggleMovieItemWatched = ({ isWatched, itemID }) => {
 	let newWatched = 'N';
 	let text = 'Watched';
-	/** @type {any} */
+	/** @type {string | undefined} */
 	let textColor = 'success';
 
 	if (!isWatched) {
 		newWatched = 'Y';
 		text = 'Mark Watched';
-		textColor = null;
+		textColor = undefined;
 	}
 
 	return (
@@ -62,11 +67,6 @@ const ToggleMovieItemWatched = ({ isWatched, itemID }) => {
 			)}
 		</Mutation>
 	);
-};
-
-ToggleMovieItemWatched.propTypes = {
-	isWatched: PropTypes.bool.isRequired,
-	itemID: PropTypes.number.isRequired,
 };
 
 export default ToggleMovieItemWatched;

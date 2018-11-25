@@ -1,15 +1,25 @@
-'use strict';
-
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, CardImage, Column, Image, Media, MediaContent, MediaLeft } from 'bloomer';
 
-import { getCaseIcon, getFormatImage, getFormattedDate, getStatusIcon } from '../api/global';
-import ToggleMovieItemWatched from './ToggleMovieItemWatched';
+import './movie-item.css';
 
-/** @type {React.StatelessComponent} */
+import { getCaseIcon, getFormatImage, getFormattedDate, getStatusIcon } from '../../api/global';
+import ToggleMovieItemWatched from '../ToggleMovieItemWatched/ToggleMovieItemWatched';
+import MovieItemPlaceholder from '../MovieItemPlaceholder/MovieItemPlaceholder';
+
+/**
+ * @typedef {{
+ *  movieItem: import('../../api/models').MovieItem,
+ *  view: string,
+ *  selectMovieItem: (id: number?) => void,
+ * }} Props
+ */
+
+/**
+ * @type {React.StatelessComponent<Props>}
+ */
 const MovieItem = ({ movieItem, selectMovieItem }) => {
-	const selectThisMovieItem = ev => {
+	const selectThisMovieItem = () => {
 		selectMovieItem(movieItem.id);
 	};
 
@@ -20,7 +30,11 @@ const MovieItem = ({ movieItem, selectMovieItem }) => {
 					<CardHeaderTitle className="item-title" title={movieItem.itemName}>{movieItem.itemName}</CardHeaderTitle>
 				</CardHeader>
 				<CardImage className="item-image">
-					<Image className="is-3by4" src={movieItem.itemURL || 'https://via.placeholder.com/239x180'} />
+					{movieItem.itemURL ?
+						<Image className="is-3by4" src={movieItem.itemURL} />
+						:
+						<MovieItemPlaceholder title={movieItem.itemName} />
+					}
 				</CardImage>
 				<CardContent>
 					<Media>
@@ -40,23 +54,17 @@ const MovieItem = ({ movieItem, selectMovieItem }) => {
 							<span className="item-attribute has-text-centered" title={movieItem.itemStatus}>
 								{getStatusIcon(movieItem.itemStatus)}
 							</span>
-							<br />
-							<small>{getFormattedDate(movieItem.releaseDate)}</small>
 						</MediaContent>
 					</Media>
+					<small>{getFormattedDate(movieItem.releaseDate)}</small>
 				</CardContent>
-				<CardFooter>
+				<CardFooter style={{ height: 71 }}>
 					<CardFooterItem href="javascript:void(0);" onClick={selectThisMovieItem}>Edit</CardFooterItem>
 					<ToggleMovieItemWatched isWatched={movieItem.isWatched === 'Y'} itemID={movieItem.id} />
 				</CardFooter>
 			</Card>
 		</Column>
 	);
-};
-
-MovieItem.propTypes = {
-	movieItem: PropTypes.object.isRequired,
-	selectMovieItem: PropTypes.func.isRequired,
 };
 
 export default MovieItem;

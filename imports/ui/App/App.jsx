@@ -1,26 +1,39 @@
-'use strict';
-
 import React, { Component } from 'react';
 import { List, Map } from 'immutable';
 
-import EditMovieItem from './EditMovieItem';
-import Filters from './Filters';
-import Header from './Header';
-import MovieItemsContainer from './MovieItemsContainer';
-import Toolbar from './Toolbar';
+import './app.css';
 
+import EditMovieItem from '../EditMovieItem/EditMovieItem.jsx';
+import Filters from '../Filters/Filters.jsx';
+import Header from '../Header/Header.jsx';
+import MovieItemsContainer from '../MovieItemsContainer/MovieItemsContainer.jsx';
+import Toolbar from '../Toolbar/Toolbar.jsx';
+
+/**
+ * @typedef {{}} Props
+ */
+
+/**
+ * @typedef {typeof initialState} State
+ */
+
+const initialState = {
+	currentMovieItem: /** @type {number?} */ (null),
+	filterOpen: false,
+	filters: Map(),
+	sortBy: List(['ITEMID', 'ASC']),
+};
+
+/**
+ * @extends {Component<Props, State>}
+ */
 class App extends Component {
-	constructor (props) {
-		super(props);
 
-		this.state = {
-			currentMovieItem: null,
-			filterOpen: false,
-			filters: Map(),
-			sortBy: List(['ITEMID', 'ASC']),
-		};
-	}
+	state = initialState;
 
+	/**
+	 * @param {number?} newMovieItem
+	 */
 	_selectMovieItem = newMovieItem => {
 		this.setState({ currentMovieItem: newMovieItem });
 	}
@@ -47,6 +60,7 @@ class App extends Component {
 			</div>
 		);
 	}
+
 }
 
 export default App;

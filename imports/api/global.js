@@ -1,9 +1,10 @@
-'use strict';
-
 import React from 'react';
-import moment from 'moment';
+import { format, parse } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * @param {string} caseType
+ */
 export const getCaseIcon = caseType => {
 	switch (caseType) {
 		case 'Plain':
@@ -18,10 +19,15 @@ export const getCaseIcon = caseType => {
 			return <FontAwesomeIcon icon="book" className="has-text-primary" title={caseType} />;
 		default:
 			console.error('Invalid case type passed', caseType);
+
 			return null;
 	}
 };
 
+/**
+ * @param {string} format
+ * @param {string} is3D
+ */
 export const getFormatImage = (format, is3D) => {
 	let image = '/images/' + format;
 
@@ -30,12 +36,20 @@ export const getFormatImage = (format, is3D) => {
 	return image + '.png';
 };
 
+/**
+ * @param {string} dateStr
+ */
 export const getFormattedDate = dateStr => {
+	const date = parse(dateStr, 'yyyy-MM-dd', new Date());
+
 	if (dateStr === '1970-01-01') return '';
 
-	return moment(dateStr).format('ddd MMM Do, YYYY');
+	return format(date, 'EEE MMM do, yyyy');
 };
 
+/**
+ * @param {string} status
+ */
 export const getStatusIcon = status => {
 	switch (status) {
 		case 'Owned':
@@ -48,6 +62,7 @@ export const getStatusIcon = status => {
 			return <FontAwesomeIcon icon="truck" className="" title={status} />;
 		default:
 			console.error('Invalid status passed', status);
+
 			return null;
 	}
 };

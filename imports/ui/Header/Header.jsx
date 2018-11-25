@@ -1,9 +1,15 @@
-'use strict';
-
 import React from 'react';
 import { Hero, HeroHeader, Navbar, NavbarBrand, NavbarEnd, NavbarItem, NavbarMenu } from 'bloomer';
 
-/** @type {React.StatelessComponent} */
+import './header.css';
+
+/**
+ * @typedef {{}} Props
+ */
+
+/**
+ * @type {React.StatelessComponent<Props>}
+ */
 const Header = () => {
 	return (
 		<Hero>
@@ -22,7 +28,5 @@ const Header = () => {
 		</Hero>
 	);
 };
-
-Header.propTypes = {};
 
 export default Header;
