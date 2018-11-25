@@ -12,7 +12,7 @@ cache:
   - node_modules
 script:
   - meteor npm run lint
-  - meteor npm test-coverage
+  - meteor npm run test:coverage
 notifications:
   slack:
     rooms:

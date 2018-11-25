@@ -12,7 +12,7 @@ import MovieItems from '../MovieItems/MovieItems';
  * }} Props
  */
 
- /**
+/**
 	* @extends {Component<Props>}
 	*/
 class MovieItemsContainer extends Component {

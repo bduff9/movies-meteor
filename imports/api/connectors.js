@@ -98,6 +98,7 @@ const MovieItemModel = db.define('movitems', {
 		afterSave: (movieItem, options) => {
 			if (movieItem.isWatched === 'Y' && movieItem.orderToWatch != null) {
 				movieItem.orderToWatch = null;
+
 				return movieItem.save();
 			} else if (movieItem.isWatched === 'N' && movieItem.orderToWatch == null) {
 				return MovieItem.findAll({ attributes: [[Sequelize.fn('MAX', Sequelize.col('ORDERED')), 'MAX_ORDERED']] })
