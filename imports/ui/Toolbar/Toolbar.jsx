@@ -8,7 +8,8 @@ import './toolbar.css';
  * @typedef {{
  *  savedViews?: import('../../api/models').SavedView[],
  *  selectedView?: string,
- *  sortBy: import('immutable').List<string>,
+ *  sortBy: import('immutable').List<import('immutable').List<string>>,
+ *  paginate: (direction: number) => void,
  *  toggleFilters: (ev: React.MouseEvent<HTMLElement>) => void
  * }} Props
  */
@@ -16,7 +17,7 @@ import './toolbar.css';
 /**
  * @type {React.StatelessComponent<Props>}
  */
-const Toolbar = ({ savedViews = [], selectedView = '', sortBy, toggleFilters }) => (
+const Toolbar = ({ savedViews = [], selectedView = '', sortBy, paginate, toggleFilters }) => (
 	<Navbar isTransparent>
 		<NavbarMenu>
 			<NavbarStart>
@@ -36,6 +37,8 @@ const Toolbar = ({ savedViews = [], selectedView = '', sortBy, toggleFilters }) 
 						<FontAwesomeIcon icon="th-large" />
 					</NavbarLink>
 					<NavbarDropdown>
+						<button type="button" onClick={() => paginate(-1)}>Prev</button>
+						<button type="button" onClick={() => paginate(1)}>Next</button>
 						{/*TODO: Show current with check */}
 						<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked grid')}>Grid</NavbarItem>
 						<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked list')}>List</NavbarItem>

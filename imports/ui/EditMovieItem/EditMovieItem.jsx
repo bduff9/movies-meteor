@@ -1,9 +1,16 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { Button } from 'bloomer';
 
 import './edit-movie-item.css';
 
 /**
  * @typedef {{
+ *  data: {
+ *    loading: boolean,
+ *    movieItem: import('../../api/models').MovieItem,
+ *  },
  *  itemID: number,
  *  selectMovieItem: (id: number?) => void,
  * }} Props
@@ -12,17 +19,57 @@ import './edit-movie-item.css';
 /**
  * @type {React.StatelessComponent<Props>}
  */
-const EditMovieItem = ({ itemID, selectMovieItem }) => {
+const EditMovieItem = ({ data, selectMovieItem }) => {
+	const { loading, movieItem } = data;
+
 	const deselectMovieItem = () => {
 		selectMovieItem(null);
 	};
 
 	return (
 		<div>
-			{itemID}
-			<button type="button" onClick={deselectMovieItem}>Return</button>
+			{loading ?
+				<div>Loading...</div>
+				:
+				<div>
+					{JSON.stringify(movieItem)}
+					<Button isColor="primary" onClick={deselectMovieItem}>Return</Button>
+				</div>
+			}
 		</div>
 	);
 };
 
-export default EditMovieItem;
+const movieItemByID = gql`
+	query MovieItemToEdity ($itemID: Int) {
+		movieItem (itemID: $itemID) {
+			id
+			orderToWatch
+			itemName
+			caseType
+			digitalType
+			is3D
+			isWatched
+			formatType
+			itemStatus
+			releaseDate
+			itemURL
+			itemNotes
+		}
+	}
+`;
+
+/**
+ * @constructs {React.StatelessComponent<Props>}
+ */
+export default graphql(movieItemByID, {
+	/**
+	 * @param {Props} props
+	 */
+	options: ({ itemID }) => ({
+		variables: {
+			itemID,
+		},
+	}),
+	// @ts-ignore
+})(EditMovieItem);

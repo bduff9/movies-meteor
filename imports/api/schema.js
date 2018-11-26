@@ -58,7 +58,8 @@ type Movie {
 
 type Query {
 	movies (itemID: Int): [Movie]
-	movieItems (isWatched: String): [MovieItem]
+	movieItem (itemID: Int): MovieItem
+	movieItems (isWatched: String, limit: Int, skip: Int, order: [[String]]): [MovieItem]
 }
 
 type Mutation {

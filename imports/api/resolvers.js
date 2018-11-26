@@ -39,8 +39,21 @@ const resolvers = {
 		 * @param {object} _
 		 * @param {object} args
 		 */
-		movieItems (_, args) {
-			return MovieItem.findAll({ where: args });
+		movieItems (_, { limit, skip: offset, order, ...args }) {
+			return MovieItem.findAll({
+				limit,
+				offset,
+				order,
+				where: args,
+			});
+		},
+
+		/**
+		 * @param {object} _
+		 * @param {object} args
+		 */
+		movieItem (_, { itemID }) {
+			return MovieItem.findByPk(itemID);
 		},
 	},
 

@@ -7,7 +7,9 @@ import MovieItems from '../MovieItems/MovieItems';
 /**
  * @typedef {{
  *  filters: import('immutable').Map<any, any>,
- *  sortBy: import('immutable').List<string>,
+ *  limit: number,
+ *  skip: number,
+ *  sortBy: import('immutable').List<import('immutable').List<string>>,
  *  selectMovieItem: (id: number?) => void,
  * }} Props
  */
@@ -21,7 +23,9 @@ class MovieItemsContainer extends Component {
 	 * @param {Props} nextProps
 	 */
 	shouldComponentUpdate (nextProps) {
-		const { filters, sortBy } = this.props;
+		const { filters, limit, skip, sortBy } = this.props;
+
+		if (limit !== nextProps.limit || skip !== nextProps.skip) return true;
 
 		if (sortBy !== nextProps.sortBy) return true;
 

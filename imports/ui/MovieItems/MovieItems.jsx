@@ -16,7 +16,9 @@ import MovieItemGridContainer from '../styled-components/MovieItemGridContainer'
  *    movieItems: import('../../api/models').MovieItem[],
  *  },
  *  filters: import('immutable').Map<any, any>,
- *  sortBy: import('immutable').List<string>,
+ *  limit: number,
+ *  skip: number,
+ *  sortBy: import('immutable').List<import('immutable').List<string>>,
  *  selectMovieItem: (id: number?) => void,
  * }} Props
  */
@@ -63,8 +65,8 @@ class MovieItems extends Component {
 }
 
 const allMovieItems = gql`
-	query MovieItemsForDisplay {
-		movieItems {
+	query MovieItemsForDisplay ($limit: Int, $skip: Int, $orderBy: [[String]]) {
+		movieItems (limit: $limit, skip: $skip, order: $orderBy) {
 			id
 			orderToWatch
 			itemName
@@ -85,8 +87,16 @@ const allMovieItems = gql`
  * @constructs {React.StatelessComponent<Props>}
  */
 export default graphql(allMovieItems, {
-	options: {
+	/**
+	 * @param {Props} props
+	 */
+	options: (props) => ({
 		pollInterval: 10000,
-	},
+		variables: {
+			limit: props.limit,
+			skip: props.skip,
+			orderBy: props.sortBy,
+		},
+	}),
 	// @ts-ignore
 })(MovieItems);
