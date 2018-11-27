@@ -35,16 +35,12 @@ class App extends Component {
 	state = initialState;
 
 	/**
-	 * @param {number} direction
+	 * @param {number} newPage
 	 */
-	_paginate = direction => {
-		const { page } = this.state;
+	_paginate = newPage => {
+		if (newPage < 1 /* || newPage > max */) return; //TODO: get max and implement max check
 
-		if (page <= 1 && direction === -1) return;
-
-		if (direction !== -1 && direction !== 1) return; //TODO: get max and implement max check
-
-		this.setState(({ page }) => ({ page: page + direction }));
+		this.setState({ page: newPage });
 	}
 
 	/**
@@ -65,7 +61,7 @@ class App extends Component {
 			<div className="full-coverage">
 				<Header />
 				{currentMovieItem === null ? [
-					<Toolbar sortBy={sortBy} paginate={this._paginate} toggleFilters={this._toggleFilters} key="toolbar" />,
+					<Toolbar page={page} sortBy={sortBy} paginate={this._paginate} toggleFilters={this._toggleFilters} key="toolbar" />,
 					(filterOpen && <Filters filters={filters} key="filters" />),
 					<MovieItemsContainer
 						filters={filters}
