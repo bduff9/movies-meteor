@@ -41,7 +41,7 @@ const EditMovieItem = ({ data, selectMovieItem }) => {
 };
 
 const movieItemByID = gql`
-	query MovieItemToEdity ($itemID: Int) {
+	query MovieItemToEdit ($itemID: Int) {
 		movieItem (itemID: $itemID) {
 			id
 			orderToWatch

@@ -3,13 +3,12 @@ import { List, Map } from 'immutable';
 
 import './app.css';
 
+import { ITEMS_PER_PAGE } from '../../api/constants';
 import EditMovieItem from '../EditMovieItem/EditMovieItem.jsx';
 import Filters from '../Filters/Filters.jsx';
 import Header from '../Header/Header.jsx';
 import MovieItemsContainer from '../MovieItemsContainer/MovieItemsContainer.jsx';
 import Toolbar from '../Toolbar/Toolbar.jsx';
-
-const ITEMS_PER_PAGE = 25;
 
 /**
  * @typedef {{}} Props

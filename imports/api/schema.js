@@ -57,6 +57,8 @@ type Movie {
 }
 
 type Query {
+	countMovies: Int!
+	countMovieItems: Int!
 	movies (itemID: Int): [Movie]
 	movieItem (itemID: Int): MovieItem
 	movieItems (isWatched: String, limit: Int, skip: Int, order: [[String]]): [MovieItem]

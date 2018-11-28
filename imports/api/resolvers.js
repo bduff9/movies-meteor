@@ -31,8 +31,24 @@ const resolvers = {
 		 * @param {object} _
 		 * @param {object} args
 		 */
+		countMovies (_, args) {
+			return Movie.count();
+		},
+
+		/**
+		 * @param {object} _
+		 * @param {object} args
+		 */
 		movies (_, args) {
 			return Movie.findAll({ where: args });
+		},
+
+		/**
+		 * @param {object} _
+		 * @param {object} args
+		 */
+		countMovieItems (_, args) {
+			return MovieItem.count();
 		},
 
 		/**

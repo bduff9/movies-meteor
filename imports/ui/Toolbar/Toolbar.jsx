@@ -1,14 +1,19 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import { Input, Navbar, NavbarDropdown, NavbarEnd, NavbarItem, NavbarLink, NavbarMenu, NavbarStart } from 'bloomer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './toolbar.css';
-import { type } from 'os';
 
-
+import { ITEMS_PER_PAGE } from '../../api/constants';
 
 /**
  * @typedef {{
+ *  data: {
+ *    loading: boolean,
+ *    countMovieItems: number,
+ *  },
  *  page: number,
  *  savedViews?: import('../../api/models').SavedView[],
  *  selectedView?: string,
@@ -21,8 +26,9 @@ import { type } from 'os';
 /**
  * @type {React.StatelessComponent<Props>}
  */
-const Toolbar = ({ page, savedViews = [], selectedView = '', sortBy, paginate, toggleFilters }) => {
-	const MAX_ROWS = Infinity;
+const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, paginate, toggleFilters }) => {
+	const { countMovieItems: totalCount, loading } = data;
+	const maxPage = loading ? page + 1 : Math.ceil(totalCount / ITEMS_PER_PAGE);
 
 	/**
 	 * @param {number | string} newPage
@@ -34,7 +40,7 @@ const Toolbar = ({ page, savedViews = [], selectedView = '', sortBy, paginate, t
 
 		if (newPage < 1) return;
 
-		if (newPage > MAX_ROWS) return;
+		if (newPage > maxPage) return;
 
 		paginate(newPage);
 	};
@@ -51,19 +57,19 @@ const Toolbar = ({ page, savedViews = [], selectedView = '', sortBy, paginate, t
 					</NavbarItem>
 				</NavbarStart>
 				<NavbarEnd>
-					<NavbarItem title="Go to first" href="javascript:void(0);" onClick={() => _paginate(1)}>
+					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to first" href="javascript:void(0);" onClick={() => _paginate(1)}>
 						<FontAwesomeIcon icon={['far', 'chevron-double-left']} />
 					</NavbarItem>
-					<NavbarItem title="Go to previous" href="javascript:void(0);" onClick={() => _paginate(page - 1)}>
+					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to previous" href="javascript:void(0);" onClick={() => _paginate(page - 1)}>
 						<FontAwesomeIcon icon={['far', 'chevron-left']} />
 					</NavbarItem>
 					<NavbarItem title="Jump to...">
 						<Input isSize="small" type="number" value={page} onChange={/** @param {React.FormEvent<HTMLInputElement>} ev */ev => _paginate(ev.currentTarget.value)} />
 					</NavbarItem>
-					<NavbarItem title="Go to next" href="javascript:void(0);" onClick={() => _paginate(page + 1)}>
+					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to next" href="javascript:void(0);" onClick={() => _paginate(page + 1)}>
 						<FontAwesomeIcon icon={['far', 'chevron-right']} />
 					</NavbarItem>
-					<NavbarItem title="Go to last" href="javascript:void(0);" onClick={() => _paginate(MAX_ROWS)}>
+					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to last" href="javascript:void(0);" onClick={() => _paginate(maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-double-right']} />
 					</NavbarItem>
 					<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked add')}>
@@ -100,4 +106,15 @@ const Toolbar = ({ page, savedViews = [], selectedView = '', sortBy, paginate, t
 	);
 };
 
-export default Toolbar;
+const getCountOfItems = gql`
+query GetCountOfItems {
+	countMovieItems
+}
+`;
+
+export default graphql(getCountOfItems, {
+	options: {
+		pollInterval: 10000,
+	},
+	// @ts-ignore
+})(Toolbar);
