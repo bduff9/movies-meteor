@@ -49,6 +49,23 @@ class App extends Component {
 		this.setState({ currentMovieItem: newMovieItem });
 	}
 
+	/**
+	 * @param {string} col
+	 */
+	_sortItems = col => {
+		const { sortBy } = this.state;
+		const colArr = sortBy.get(0);
+		let newColArr;
+
+		if (colArr.get(0) === col) {
+			newColArr = colArr.set(1, (colArr.get(1) === 'ASC' ? 'DESC' : 'ASC'));
+		} else {
+			newColArr = List([col, 'ASC']);
+		}
+
+		this.setState({ sortBy: List([ newColArr ]) });
+	}
+
 	_toggleFilters = () => {
 		this.setState(prevState => ({ filterOpen: !prevState.filterOpen }));
 	}
@@ -60,7 +77,7 @@ class App extends Component {
 			<div className="full-coverage">
 				<Header />
 				{currentMovieItem === null ? [
-					<Toolbar page={page} sortBy={sortBy} paginate={this._paginate} toggleFilters={this._toggleFilters} key="toolbar" />,
+					<Toolbar page={page} sortBy={sortBy} paginate={this._paginate} sortItems={this._sortItems} toggleFilters={this._toggleFilters} key="toolbar" />,
 					(filterOpen && <Filters filters={filters} key="filters" />),
 					<MovieItemsContainer
 						filters={filters}

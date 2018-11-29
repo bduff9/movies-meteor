@@ -7,7 +7,7 @@
 
 ## Client
 
-- Handle sorting
+- Routing for add/edit
 - Create form for editing/adding
   - Create add/update events
   - Animations on add/update screen

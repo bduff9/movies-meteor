@@ -19,6 +19,7 @@ import { ITEMS_PER_PAGE } from '../../api/constants';
  *  selectedView?: string,
  *  sortBy: import('immutable').List<import('immutable').List<string>>,
  *  paginate: (newPage: number) => void,
+ *  sortItems: (col: string) => void,
  *  toggleFilters: (ev: React.MouseEvent<HTMLElement>) => void
  * }} Props
  */
@@ -26,9 +27,21 @@ import { ITEMS_PER_PAGE } from '../../api/constants';
 /**
  * @type {React.StatelessComponent<Props>}
  */
-const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, paginate, toggleFilters }) => {
+const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, paginate, sortItems, toggleFilters }) => {
 	const { countMovieItems: totalCount, loading } = data;
 	const maxPage = loading ? page + 1 : Math.ceil(totalCount / ITEMS_PER_PAGE);
+	const [sortCol, sortDir] = sortBy.get(0).toArray();
+
+	/**
+	 * @param {string} col
+	 */
+	const _displayCurrentSort = col => {
+		if (sortCol !== col) return <FontAwesomeIcon icon={['far', 'sort']} />;
+
+		if (sortDir === 'ASC') return <FontAwesomeIcon icon="sort-up" />;
+
+		return <FontAwesomeIcon icon="sort-down" />;
+	};
 
 	/**
 	 * @param {number | string} newPage
@@ -94,10 +107,18 @@ const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, pagin
 							<FontAwesomeIcon icon="sort" />
 						</NavbarLink>
 						<NavbarDropdown>
-							{/*TODO: Show current with check, add more?, handle ASC/DESC */}
-							<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked order sort')}>Order</NavbarItem>
-							<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked id sort')}>ID</NavbarItem>
-							<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked title sort')}>Title</NavbarItem>
+							<NavbarItem href="javascript:void(0);" onClick={() => sortItems('ORDERED')}>
+								{_displayCurrentSort('ORDERED')}
+								&nbsp;Order
+							</NavbarItem>
+							<NavbarItem href="javascript:void(0);" onClick={() => sortItems('ITEMID')}>
+								{_displayCurrentSort('ITEMID')}
+								&nbsp;ID
+							</NavbarItem>
+							<NavbarItem href="javascript:void(0);" onClick={() => sortItems('ITEMNAME')}>
+								{_displayCurrentSort('ITEMNAME')}
+								&nbsp;Title
+							</NavbarItem>
 						</NavbarDropdown>
 					</NavbarItem>
 				</NavbarEnd>
