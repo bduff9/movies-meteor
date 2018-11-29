@@ -7,10 +7,11 @@
 
 ## Client
 
+- Handle sorting
 - Create form for editing/adding
   - Create add/update events
   - Animations on add/update screen
-- Handle sorting
+- Clean up files per Better Code Hub
 - Figure out render perf issue
   - Maybe only render first 10 and then on scroll?
   - Can we set up a virtualized list to always render just the needed?
