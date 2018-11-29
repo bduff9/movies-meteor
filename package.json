@@ -48,15 +48,15 @@
     "meteor-node-stubs": "0.4.1",
     "mysql2": "1.6.4",
     "react": "16.6.3",
-    "react-apollo": "2.3.1",
+    "react-apollo": "2.3.2",
     "react-dom": "16.6.3",
     "sequelize": "4.41.2",
-    "styled-components": "4.1.1"
+    "styled-components": "4.1.2"
   },
   "devDependencies": {
     "@types/meteor": "1.4.23",
     "@types/react-fontawesome": "1.6.4",
-    "@types/sequelize": "4.27.31",
+    "@types/sequelize": "4.27.32",
     "autoprefixer": "9.3.1",
     "babel-eslint": "10.0.1",
     "babel-plugin-transform-class-properties": "6.24.1",
