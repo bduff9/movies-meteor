@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import MovieItems from './MovieItems';
+import AddMovieItemPage from './AddMovieItemPage';
 
-describe('MovieItems', () => {
+describe('AddMovieItemPage', () => {
 	/**
 	 * @type {import('enzyme').ShallowWrapper<any, any, any>} wrapper
 	 */
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallow(<MovieItems />);
+		wrapper = shallow(<AddMovieItemPage />);
 	});
 
 	it('exists', () => {

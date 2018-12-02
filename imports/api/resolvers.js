@@ -1,30 +1,14 @@
 import { MovieItem, Movie } from './connectors';
 
+import { DIGITAL_TYPES, FORMAT_TYPES } from './constants';
+
 /**
  * @type {import('graphql-tools').IResolvers<any, any>} resolvers
  */
 const resolvers = {
-	MovieItem: {
-		/**
-		 * @param {{ digitalType: string }} arg0
-		 */
-		digitalType ({ digitalType }) {
-			if (digitalType === 'DC+UV') return 'DCUV';
+	DigitalType: DIGITAL_TYPES,
 
-			return digitalType;
-		},
-
-		/**
-		 * @param {{ formatType: string }} arg0
-		 */
-		formatType ({ formatType }) {
-			if (formatType === 'Blu-ray') return 'BluRay';
-
-			if (formatType === 'Ultra HD') return 'UltraHD';
-
-			return formatType;
-		},
-	},
+	FormatType: FORMAT_TYPES,
 
 	Query: {
 		/**

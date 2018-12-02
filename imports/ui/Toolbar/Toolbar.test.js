@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-import Toolbar from './Toolbar';
 import { List } from 'immutable';
+
+import Toolbar from './Toolbar.jsx';
 
 describe('Toolbar', () => {
 	/**
@@ -11,7 +11,17 @@ describe('Toolbar', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallow(<Toolbar sortBy={List()} toggleFilters={ev => null} />);
+		wrapper = shallow(
+			<Toolbar
+				maxPage={1}
+				page={1}
+				sortBy={List()}
+				viewAs="Grid"
+				changeView={ev => null}
+				paginate={(newPage, maxPage) => null}
+				sortItems={col => null}
+				toggleFilters={ev => null} />
+		);
 	});
 
 	it('exists', () => {

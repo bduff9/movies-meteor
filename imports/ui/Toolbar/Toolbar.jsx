@@ -1,24 +1,22 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import { Input, Navbar, NavbarDropdown, NavbarEnd, NavbarItem, NavbarLink, NavbarMenu, NavbarStart } from 'bloomer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './toolbar.css';
 
-import { ITEMS_PER_PAGE } from '../../api/constants';
+import { VIEWS } from '../../api/constants';
 
 /**
  * @typedef {{
- *  data: {
- *    loading: boolean,
- *    countMovieItems: number,
- *  },
+ *  maxPage: number,
  *  page: number,
  *  savedViews?: import('../../api/models').SavedView[],
  *  selectedView?: string,
  *  sortBy: import('immutable').List<import('immutable').List<string>>,
- *  paginate: (newPage: number) => void,
+ *  viewAs: string,
+ *  changeView: (newView: string) => void,
+ *  paginate: (newPage: (number | string), maxPage: number) => void,
  *  sortItems: (col: string) => void,
  *  toggleFilters: (ev: React.MouseEvent<HTMLElement>) => void
  * }} Props
@@ -27,9 +25,7 @@ import { ITEMS_PER_PAGE } from '../../api/constants';
 /**
  * @type {React.StatelessComponent<Props>}
  */
-const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, paginate, sortItems, toggleFilters }) => {
-	const { countMovieItems: totalCount, loading } = data;
-	const maxPage = loading ? page + 1 : Math.ceil(totalCount / ITEMS_PER_PAGE);
+const Toolbar = ({ maxPage, page, savedViews = [], selectedView = '', sortBy, viewAs, changeView, paginate, sortItems, toggleFilters }) => {
 	const [sortCol, sortDir] = sortBy.get(0).toArray();
 
 	/**
@@ -44,18 +40,16 @@ const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, pagin
 	};
 
 	/**
-	 * @param {number | string} newPage
+	 * @returns {import('@fortawesome/fontawesome-svg-core').IconProp}
 	 */
-	const _paginate = newPage => {
-		if (typeof newPage === 'string') newPage = parseInt(newPage, 10);
+	const _getViewIcon = () => {
+		if (viewAs === 'Grid') return 'th-large';
 
-		if (newPage === page) return;
+		if (viewAs === 'List') return ['far', 'list'];
 
-		if (newPage < 1) return;
+		if (viewAs === 'Detail') return ['far', 'table'];
 
-		if (newPage > maxPage) return;
-
-		paginate(newPage);
+		return 'question-square';
 	};
 
 	return (
@@ -70,33 +64,34 @@ const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, pagin
 					</NavbarItem>
 				</NavbarStart>
 				<NavbarEnd>
-					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to first" href="javascript:void(0);" onClick={() => _paginate(1)}>
+					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to first" href="javascript:void(0);" onClick={() => paginate(1, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-double-left']} />
 					</NavbarItem>
-					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to previous" href="javascript:void(0);" onClick={() => _paginate(page - 1)}>
+					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to previous" href="javascript:void(0);" onClick={() => paginate(page - 1, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-left']} />
 					</NavbarItem>
 					<NavbarItem title="Jump to...">
-						<Input isSize="small" type="number" value={page} onChange={/** @param {React.FormEvent<HTMLInputElement>} ev */ev => _paginate(ev.currentTarget.value)} />
+						<Input isSize="small" type="number" value={page} onChange={/** @param {React.FormEvent<HTMLInputElement>} ev */ev => paginate(ev.currentTarget.value, maxPage)} />
 					</NavbarItem>
-					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to next" href="javascript:void(0);" onClick={() => _paginate(page + 1)}>
+					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to next" href="javascript:void(0);" onClick={() => paginate(page + 1, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-right']} />
 					</NavbarItem>
-					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to last" href="javascript:void(0);" onClick={() => _paginate(maxPage)}>
+					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to last" href="javascript:void(0);" onClick={() => paginate(maxPage, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-double-right']} />
 					</NavbarItem>
-					<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked add')}>
-						<FontAwesomeIcon icon="plus" />
+					<NavbarItem>
+						<Link to="/item/add"><FontAwesomeIcon icon="plus" /></Link>
 					</NavbarItem>
 					<NavbarItem hasDropdown isHoverable>
 						<NavbarLink href="javascript:void(0);">
-							<FontAwesomeIcon icon="th-large" />
+							<FontAwesomeIcon icon={_getViewIcon()} />
 						</NavbarLink>
 						<NavbarDropdown>
-							{/*TODO: Show current with check */}
-							<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked grid')}>Grid</NavbarItem>
-							<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked list')}>List</NavbarItem>
-							<NavbarItem href="javascript:void(0);" onClick={() => console.log('clicked detail')}>Detail</NavbarItem>
+							{VIEWS.map(view => (
+								<NavbarItem href="javascript:void(0);" onClick={() => changeView(view)} key={`view-${view}`}>
+									{view === viewAs ? <b>{view}</b> : view}
+								</NavbarItem>
+							))}
 						</NavbarDropdown>
 					</NavbarItem>
 					<NavbarItem href="javascript:void(0);" onClick={toggleFilters}>
@@ -127,15 +122,4 @@ const Toolbar = ({ data, page, savedViews = [], selectedView = '', sortBy, pagin
 	);
 };
 
-const getCountOfItems = gql`
-query GetCountOfItems {
-	countMovieItems
-}
-`;
-
-export default graphql(getCountOfItems, {
-	options: {
-		pollInterval: 10000,
-	},
-	// @ts-ignore
-})(Toolbar);
+export default Toolbar;

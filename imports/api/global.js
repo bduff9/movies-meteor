@@ -3,6 +3,11 @@ import { format, parse } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
+ * @param {string} str
+ */
+export const formatForGraphQL = str => str.replace(/[^a-zA-Z0-9]/g, '');
+
+/**
  * @param {string} caseType
  */
 export const getCaseIcon = caseType => {

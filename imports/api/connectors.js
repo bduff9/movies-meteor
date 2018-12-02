@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import Sequelize from 'sequelize';
 
+import { ITEM_CASES, ITEM_DIGITAL_TYPES, ITEM_FORMATS, ITEM_STATUSES, YES_NO } from './constants';
+
 const { userName, password, url: host, port } = Meteor.settings.private.database;
 
 // Create the connection
@@ -36,37 +38,37 @@ const MovieItemModel = db.define('movitems', {
 	},
 	caseType: {
 		field: 'ITEMCASE',
-		type: Sequelize.ENUM('Plain', 'Box', 'Slipcover', 'Digibook', 'Steelbook'),
+		type: Sequelize.ENUM(ITEM_CASES),
 		allowNull: false,
 		defaultValue: 'Plain',
 	},
 	digitalType: {
 		field: 'ITEMDIGITL',
-		type: Sequelize.ENUM('None', 'DC', 'UV', 'DC+UV'),
+		type: Sequelize.ENUM(ITEM_DIGITAL_TYPES),
 		allowNull: false,
 		defaultValue: 'None',
 	},
 	is3D: {
 		field: 'ITEM3D',
-		type: Sequelize.ENUM('Y', 'N'),
+		type: Sequelize.ENUM(YES_NO),
 		allowNull: false,
 		defaultValue: 'N',
 	},
 	isWatched: {
 		field: 'ITEMWATCH',
-		type: Sequelize.ENUM('Y', 'N'),
+		type: Sequelize.ENUM(YES_NO),
 		allowNull: false,
 		defaultValue: 'N',
 	},
 	formatType: {
 		field: 'ITEMFORMAT',
-		type: Sequelize.ENUM('Blu-ray', 'DVD', 'Ultra HD', 'UV', 'Digital'),
+		type: Sequelize.ENUM(ITEM_FORMATS),
 		allowNull: false,
 		defaultValue: 'Blu-ray',
 	},
 	itemStatus: {
 		field: 'ITEMSTATUS',
-		type: Sequelize.ENUM('Owned', 'Wanted', 'Selling', 'Waiting'),
+		type: Sequelize.ENUM(ITEM_STATUSES),
 		allowNull: false,
 		defaultValue: 'Owned',
 	},

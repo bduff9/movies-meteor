@@ -48,14 +48,15 @@ const ToggleMovieItemWatched = ({ isWatched, itemID }) => {
 							 * i.e. with it, the screen hangs for a second, then briefly shows loading followed by updated status.
 							 * Without it, the loading immediately shows until the response from the server updates the item's status.
 							 * Leaving here for demonstration only until we figure out infinite loading
-							 optimisticResponse: {
+							 */
+							optimisticResponse: {
 								__typename: 'Mutation',
 								markMovieWatched: {
 									id: itemID,
 									__typename: 'MovieItem',
 									isWatched: newWatched,
 								},
-							},*/
+							},
 							variables: {
 								id: itemID,
 								isWatched: newWatched,

@@ -1,17 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Map, List } from 'immutable';
 
-import MovieItemsContainer from './MovieItemsContainer.jsx';
+import MovieItemForm from './MovieItemForm';
 
-describe('App', () => {
+describe('MovieItemForm', () => {
 	/**
 	 * @type {import('enzyme').ShallowWrapper<any, any, any>} wrapper
 	 */
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallow(<MovieItemsContainer filters={Map()} sortBy={List()} selectMovieItem={() => null} />);
+		wrapper = shallow(<MovieItemForm movieItem={{}} />);
 	});
 
 	it('exists', () => {
