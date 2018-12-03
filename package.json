@@ -22,7 +22,7 @@
     "test:meteor": "meteor test --driver-package=practicalmeteor:mocha --port=3004"
   },
   "dependencies": {
-    "@babel/runtime": "7.1.5",
+    "@babel/runtime": "7.2.0",
     "@fortawesome/fontawesome-pro": "5.5.0",
     "@fortawesome/fontawesome-svg-core": "1.2.8",
     "@fortawesome/free-brands-svg-icons": "5.5.0",
