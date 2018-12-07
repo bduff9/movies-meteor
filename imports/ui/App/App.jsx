@@ -1,20 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './app.css';
 
-import AddMovieItemPage from '../AddMovieItemPage/AddMovieItemPage.jsx';
-import EditMovieItemPage from '../EditMovieItemPage/EditMovieItemPage.jsx';
 import Header from '../Header/Header.jsx';
-import MovieItemsDisplayPage from '../MovieItemsDisplayPage/MovieItemsDisplayPage.jsx';
+import Loading from '../Loading/Loading.jsx';
+
+export const AddMovieItemPage = lazy(() => import('../AddMovieItemPage/AddMovieItemPage.jsx'));
+export const EditMovieItemPage = lazy(() => import('../EditMovieItemPage/EditMovieItemPage.jsx'));
+export const MovieItemsDisplayPage = lazy(() => import('../MovieItemsDisplayPage/MovieItemsDisplayPage.jsx'));
 
 const App = () => (
 	<Router>
 		<div className="full-coverage">
 			<Header />
-			<Route exact path="/" component={MovieItemsDisplayPage} />
-			<Route path="/item/:itemID(\d+)" component={EditMovieItemPage} />
-			<Route exact path="/item/add" component={AddMovieItemPage} />
+			<Suspense fallback={<div><Loading /></div>} key="route-suspense">
+				<Switch>
+					<Route exact path="/" component={MovieItemsDisplayPage} />
+					<Route path="/item/:itemID(\d+)" component={EditMovieItemPage} />
+					<Route exact path="/item/add" component={AddMovieItemPage} />
+				</Switch>
+			</Suspense>
 		</div>
 	</Router>
 );

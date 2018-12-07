@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import MovieItemsGrid from './MovieItemsGrid';
+import Loading from './Loading.jsx';
 
-describe('MovieItemsGrid', () => {
+describe('Loading', () => {
 	/**
 	 * @type {import('enzyme').ShallowWrapper<any, any, any>} wrapper
 	 */
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallow(<MovieItemsGrid loading={true} movieItems={[]} />);
+		wrapper = shallow(<Loading />);
 	});
 
 	it('exists', () => {

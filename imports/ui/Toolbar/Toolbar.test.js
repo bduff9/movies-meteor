@@ -15,7 +15,7 @@ describe('Toolbar', () => {
 			<Toolbar
 				maxPage={1}
 				page={1}
-				sortBy={List()}
+				sortBy={List([ List() ])}
 				viewAs="Grid"
 				changeView={ev => null}
 				paginate={(newPage, maxPage) => null}

@@ -6,7 +6,9 @@ import './movie-items-container.css';
 
 import { ITEMS_PER_PAGE } from '../../api/constants';
 import Filters from '../Filters/Filters.jsx';
+import MovieItemsDetail from '../MovieItemsDetail/MovieItemsDetail';
 import MovieItemsGrid from '../MovieItemsGrid/MovieItemsGrid';
+import MovieItemsList from '../MovieItemsList/MovieItemsList';
 import Toolbar from '../Toolbar/Toolbar.jsx';
 
 /**
@@ -56,8 +58,18 @@ const MovieItemsContainer = ({ data, filterOpen, filters, page, viewAs, ...rest 
 					movieItems={movieItems}
 					key="movieItemsGrid" />
 			)}
-			{viewAs === 'List' && (<div>TODO: List view</div>)}
-			{viewAs === 'Detail' && (<div>TODO: Detail view</div>)}
+			{viewAs === 'List' && (
+				<MovieItemsList
+					loading={loading}
+					movieItems={movieItems}
+					key="movieItemsList" />
+			)}
+			{viewAs === 'Detail' && (
+				<MovieItemsDetail
+					loading={loading}
+					movieItems={movieItems}
+					key="movieItemsDetail" />
+			)}
 		</div>
 	);
 };

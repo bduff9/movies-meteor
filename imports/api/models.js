@@ -28,8 +28,9 @@ export const SavedView = (id, name, metadata) => ({
  * @param {string=} releaseDate
  * @param {string=} isWatched
  * @param {string=} itemURL
+ * @param {string=} itemNotes
  */
-export const MovieItem = (id, itemName = '', formatType = 'UltraHD', is3D = 'N', digitalType = 'None', caseType = 'Plain', itemStatus = 'Owned', releaseDate = '1970-01-01', isWatched = 'N', itemURL = '') => ({
+export const MovieItem = (id, itemName = '', formatType = 'UltraHD', is3D = 'N', digitalType = 'None', caseType = 'Plain', itemStatus = 'Owned', releaseDate = '1970-01-01', isWatched = 'N', itemURL = '', itemNotes = '') => ({
 	id,
 	itemName,
 	formatType,
@@ -40,4 +41,5 @@ export const MovieItem = (id, itemName = '', formatType = 'UltraHD', is3D = 'N',
 	releaseDate,
 	isWatched,
 	itemURL,
+	itemNotes,
 });

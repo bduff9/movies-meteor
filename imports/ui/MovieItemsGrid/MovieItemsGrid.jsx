@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, CardImage, Column, Columns, Image, Media, MediaContent, MediaLeft } from 'bloomer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './movie-items-grid.css';
 
 import { getCaseIcon, getFormatImage, getFormattedDate, getStatusIcon } from '../../api/global';
+import Loading from '../Loading/Loading';
 import MovieItemGridContainer from '../styled-components/MovieItemGridContainer';
 import MovieItemPlaceholder from '../MovieItemPlaceholder/MovieItemPlaceholder';
 import ToggleMovieItemWatched from '../ToggleMovieItemWatched/ToggleMovieItemWatched';
@@ -21,8 +21,7 @@ const MovieItemsGrid = ({ loading, movieItems }) => (
 		<Columns isGrid isMultiline>
 			{loading ? (
 				<Column isSize="full">
-					<FontAwesomeIcon icon="spinner" spin />
-					&nbsp; Loading...
+					<Loading />
 				</Column>
 			)
 				:

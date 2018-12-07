@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Button, Column, Control, Field, Help, Image, Input, Label, Radio, Select } from 'bloomer';
+import { Button, Column, Control, Field, Help, Image, Input, Label, Radio, Select, TextArea } from 'bloomer';
 
 import './movie-item-form.css';
 
@@ -34,6 +34,7 @@ const MovieItemForm = ({ movieItem, onSubmit }) => (
 			releaseDate: Yup.date().required('Please enter a valid release date'),
 			isWatched: Yup.string().oneOf(YES_NO).required('Please select whether this has been watched'),
 			itemURL: Yup.string().url('Please enter a valid image URL').required('Please enter an image URL'),
+			itemNotes: Yup.string(),
 		})}>
 		{({
 			dirty,
@@ -216,6 +217,19 @@ const MovieItemForm = ({ movieItem, onSubmit }) => (
 						<MovieItemPlaceholder title={values.itemName || ''} />
 					}
 				</div>
+
+				<Field>
+					<Label>Notes</Label>
+					<Control>
+						<TextArea
+							id="itemNotes"
+							name="itemNotes"
+							value={values.itemNotes}
+							placeholder="Optional Notes"
+							onBlur={handleBlur}
+							onChange={handleChange} />
+					</Control>
+				</Field>
 
 				<Column>
 					<ButtonLink isColor="danger" to="/">Return</ButtonLink>

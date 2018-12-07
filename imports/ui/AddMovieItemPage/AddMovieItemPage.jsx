@@ -40,20 +40,18 @@ const AddMovieItemPage = ({ history }) => (
 
 const addMovieItem = gql`
 mutation AddMovieItem (
-	$orderToWatch: Int,
-	$itemName: String,
+	$itemName: String!,
 	$caseType: CaseType,
 	$digitalType: DigitalType,
 	$is3D: YesNo,
 	$isWatched: YesNo,
 	$formatType: FormatType,
 	$itemStatus: StatusType,
-	$releaseDate: String,
-	$itemURL: String,
+	$releaseDate: String!,
+	$itemURL: String!,
 	$itemNotes: String
 ) {
 	addMovieItem (
-		orderToWatch: $orderToWatch,
 		itemName: $itemName,
 		caseType: $caseType,
 		digitalType: $digitalType,

@@ -52,6 +52,18 @@ const Toolbar = ({ maxPage, page, savedViews = [], selectedView = '', sortBy, vi
 		return 'question-square';
 	};
 
+	/**
+	 * @type {{
+	 *  disabled: import('../../../../../Library/Caches/typescript/3.1/node_modules/@types/react').CSSProperties
+	 * }} styles
+	 */
+	const styles = {
+		disabled: {
+			opacity: 0.5,
+			pointerEvents: 'none',
+		},
+	};
+
 	return (
 		<Navbar isTransparent>
 			<NavbarMenu>
@@ -64,19 +76,19 @@ const Toolbar = ({ maxPage, page, savedViews = [], selectedView = '', sortBy, vi
 					</NavbarItem>
 				</NavbarStart>
 				<NavbarEnd>
-					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to first" href="javascript:void(0);" onClick={() => paginate(1, maxPage)}>
+					<NavbarItem style={page < 2 ? styles.disabled : undefined} title="Go to first" href="javascript:void(0);" onClick={() => paginate(1, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-double-left']} />
 					</NavbarItem>
-					<NavbarItem className={page < 2 ? 'disabled' : ''} title="Go to previous" href="javascript:void(0);" onClick={() => paginate(page - 1, maxPage)}>
+					<NavbarItem style={page < 2 ? styles.disabled : undefined} title="Go to previous" href="javascript:void(0);" onClick={() => paginate(page - 1, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-left']} />
 					</NavbarItem>
 					<NavbarItem title="Jump to...">
 						<Input isSize="small" type="number" value={page} onChange={/** @param {React.FormEvent<HTMLInputElement>} ev */ev => paginate(ev.currentTarget.value, maxPage)} />
 					</NavbarItem>
-					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to next" href="javascript:void(0);" onClick={() => paginate(page + 1, maxPage)}>
+					<NavbarItem style={page >= maxPage ? styles.disabled : undefined} title="Go to next" href="javascript:void(0);" onClick={() => paginate(page + 1, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-right']} />
 					</NavbarItem>
-					<NavbarItem className={page >= maxPage ? 'disabled' : ''} title="Go to last" href="javascript:void(0);" onClick={() => paginate(maxPage, maxPage)}>
+					<NavbarItem style={page >= maxPage ? styles.disabled : undefined} title="Go to last" href="javascript:void(0);" onClick={() => paginate(maxPage, maxPage)}>
 						<FontAwesomeIcon icon={['far', 'chevron-double-right']} />
 					</NavbarItem>
 					<NavbarItem>
