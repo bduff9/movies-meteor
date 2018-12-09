@@ -34,7 +34,7 @@ const MovieItemForm = ({ movieItem, onSubmit }) => (
 			releaseDate: Yup.date().required('Please enter a valid release date'),
 			isWatched: Yup.string().oneOf(YES_NO).required('Please select whether this has been watched'),
 			itemURL: Yup.string().url('Please enter a valid image URL').required('Please enter an image URL'),
-			itemNotes: Yup.string(),
+			itemNotes: Yup.string().nullable(true),
 		})}>
 		{({
 			dirty,
@@ -54,6 +54,7 @@ const MovieItemForm = ({ movieItem, onSubmit }) => (
 					<Button isColor="warning" type="button" disabled={!dirty || isSubmitting} onClick={handleReset}>Reset</Button>
 					&nbsp;
 					<Button isColor="primary" type="submit" disabled={isSubmitting}>Save</Button>
+					{Object.keys(errors).length > 0 && <Help isColor="danger">Please fix the {Object.keys(errors).length} errors below</Help>}
 				</Column>
 
 				<Field>
@@ -224,11 +225,12 @@ const MovieItemForm = ({ movieItem, onSubmit }) => (
 						<TextArea
 							id="itemNotes"
 							name="itemNotes"
-							value={values.itemNotes}
+							value={values.itemNotes || ''}
 							placeholder="Optional Notes"
 							onBlur={handleBlur}
 							onChange={handleChange} />
 					</Control>
+					{errors.itemNotes && touched.itemNotes && <Help isColor="danger">{errors.itemNotes}</Help>}
 				</Field>
 
 				<Column>

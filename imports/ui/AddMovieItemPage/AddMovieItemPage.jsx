@@ -25,7 +25,7 @@ const AddMovieItemPage = ({ history }) => (
 	<Container isFluid>
 		<Columns isCentered isGrid isVCentered>
 			<Column>
-				<Mutation mutation={addMovieItem}>
+				<Mutation mutation={addMovieItem} refetchQueries={['MovieItemsForDisplay']} awaitRefetchQueries>
 					{(addMovie, { loading, error }) => (
 						<React.Fragment>
 							<MovieItemForm movieItem={MovieItem()} onSubmit={(movieItem, extra) => addMovie({ variables: movieItem }).then(() => history.push('/'))} />

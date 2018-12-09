@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './edit-movie-item-page.css';
 
 import MovieItemForm from '../MovieItemForm/MovieItemForm';
+import MovieItemMoviesContainer from '../MovieItemMoviesContainer/MovieItemMoviesContainer';
 
 /**
  * @typedef {{
@@ -40,7 +41,7 @@ const EditMovieItemPage = ({ data, history }) => {
 					</Column>
 					:
 					<Column>
-						<Mutation mutation={editMovieItem}>
+						<Mutation mutation={editMovieItem} refetchQueries={['MovieItemsForDisplay']} awaitRefetchQueries>
 							{(editMovie, { loading, error }) => (
 								<React.Fragment>
 									<MovieItemForm movieItem={movieItem} onSubmit={(movieItem, extra) => editMovie({ variables: movieItem }).then(() => history.push('/'))} />
@@ -48,6 +49,7 @@ const EditMovieItemPage = ({ data, history }) => {
 								</React.Fragment>
 							)}
 						</Mutation>
+						{movieItem.id != null && <MovieItemMoviesContainer movieItemID={movieItem.id} />}
 					</Column>
 				}
 			</Columns>
