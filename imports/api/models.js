@@ -43,3 +43,16 @@ export const MovieItem = (id, itemName = '', formatType = 'UltraHD', is3D = 'N',
 	itemURL,
 	itemNotes,
 });
+
+/**
+ * @param {number=} id
+ * @param {number=} itemID
+ * @param {string} movieTitle
+ * @param {string} movieURL
+ */
+export const Movie = (id, itemID, movieTitle = '', movieURL = '') => ({
+	id,
+	itemID,
+	movieTitle,
+	movieURL,
+});

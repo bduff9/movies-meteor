@@ -52,7 +52,7 @@ type MovieItem {
 type Movie {
 	id: Int! @isUnique
 	itemID: Int! @relation(name: "ItemID")
-	movieTitle: String!
+	movieTitle: String
 	movieURL: String
 }
 
