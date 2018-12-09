@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 
 import './movie-items-display-page.css';
 
@@ -16,14 +16,31 @@ import MovieItemsContainer from '../MovieItemsContainer/MovieItemsContainer.jsx'
  */
 
 /**
- * @typedef {typeof initialState} State
+ * @typedef {typeof INITIAL_STATE} State
  */
-const initialState = {
+const INITIAL_STATE = {
 	filterOpen: false,
 	filters: Map(),
 	page: 1,
 	sortBy: List([ List(['ITEMID', 'ASC']) ]),
 	viewAs: 'Grid',
+};
+const SAVED_STATE_KEY = 'MovieItemsDisplayPageState';
+
+const getInitialState = () => {
+	//TODO: Dirty way to save state of list for now.  May be better to store in some place like DB or Redux
+	const savedState = localStorage.getItem(SAVED_STATE_KEY);
+	let initialState;
+
+	try {
+		initialState = savedState && fromJS(JSON.parse(savedState)).toObject();
+
+		if (!initialState) throw new Error('Missing saved state');
+	} catch (err) {
+		initialState = INITIAL_STATE;
+	}
+
+	return initialState;
 };
 
 /**
@@ -31,7 +48,7 @@ const initialState = {
  */
 class MovieItemList extends Component {
 
-	state = initialState;
+	state = getInitialState();
 
 	/**
 	 * @param {string} newView
@@ -79,6 +96,8 @@ class MovieItemList extends Component {
 
 	render () {
 		const { filterOpen, filters, page, sortBy, viewAs } = this.state;
+
+		localStorage.setItem(SAVED_STATE_KEY, JSON.stringify(this.state));
 
 		return (
 			<MovieItemsContainer
