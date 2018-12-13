@@ -12,7 +12,9 @@ import '../imports/startup/client';
 const client = new ApolloClient(createApolloClient());
 
 Meteor.startup(() => {
-	render(<ApolloProvider client={client}>
-		<App />
-	</ApolloProvider>, document.getElementById('app'));
+	render(<React.StrictMode>
+		<ApolloProvider client={client}>
+			<App />
+		</ApolloProvider>
+	</React.StrictMode>, document.getElementById('app'));
 });
