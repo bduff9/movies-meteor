@@ -50,7 +50,7 @@
     "mysql2": "1.6.4",
     "react": "16.6.3",
     "react-apollo": "2.3.2",
-    "react-dom": "16.6.3",
+    "react-dom": "16.7.0",
     "react-router-dom": "4.3.1",
     "sequelize": "4.42.0",
     "styled-components": "4.1.2",
