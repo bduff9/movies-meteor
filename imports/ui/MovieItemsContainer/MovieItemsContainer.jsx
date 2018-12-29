@@ -33,13 +33,14 @@ import Toolbar from '../Toolbar/Toolbar.jsx';
  *  paginate: (newPage: number | string, maxPage: number) => void,
  *  sortItems: (col: string) => void,
  *  toggleFilters: (ev: React.MouseEvent<HTMLElement>) => void,
+ *  updateFilters: (filters: import('immutable').Map<any, any>) => void,
  * }} Props
  */
 
 /**
 	* @param {Props & QueryResult} Props
 	*/
-const MovieItemsContainer = ({ data, filterOpen, filters, page, viewAs, ...rest }) => {
+const MovieItemsContainer = ({ data, filterOpen, filters, page, viewAs, updateFilters, ...rest }) => {
 	const { countMovieItems, loading, movieItems } = data;
 	const maxPage = loading ? page : Math.ceil(countMovieItems / ITEMS_PER_PAGE);
 
@@ -51,7 +52,7 @@ const MovieItemsContainer = ({ data, filterOpen, filters, page, viewAs, ...rest 
 				page={page}
 				viewAs={viewAs}
 				key="toolbar" />
-			{filterOpen && <Filters filters={filters} key="filters" />}
+			{filterOpen && <Filters filters={filters} updateFilters={updateFilters} key="filters" />}
 			{viewAs === 'Grid' && (
 				<MovieItemsGrid
 					loading={loading}
@@ -75,8 +76,8 @@ const MovieItemsContainer = ({ data, filterOpen, filters, page, viewAs, ...rest 
 };
 
 const allMovieItems = gql`
-	query MovieItemsForDisplay ($limit: Int, $skip: Int, $orderBy: [[String]]) {
-		movieItems (limit: $limit, skip: $skip, order: $orderBy) {
+	query MovieItemsForDisplay ($filters: Object, $limit: Int, $skip: Int, $orderBy: [[String]]) {
+		movieItems (filters: $filters, limit: $limit, skip: $skip, order: $orderBy) {
 			id
 			orderToWatch
 			itemName
@@ -101,9 +102,10 @@ export default graphql(allMovieItems, {
 	/**
 	 * @param {Props} props
 	 */
-	options: ({ page, sortBy}) => ({
+	options: ({ filters, page, sortBy }) => ({
 		pollInterval: 10000,
 		variables: {
+			filters,
 			limit: ITEMS_PER_PAGE,
 			skip: (page - 1) * ITEMS_PER_PAGE,
 			orderBy: sortBy,

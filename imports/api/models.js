@@ -56,3 +56,12 @@ export const Movie = (id, itemID, movieTitle = '', movieURL = '') => ({
 	movieTitle,
 	movieURL,
 });
+
+/**
+ * @param {string} operator
+ * @param {any} value
+ */
+export const Filter = (operator, value) => ({
+	operator,
+	value,
+});

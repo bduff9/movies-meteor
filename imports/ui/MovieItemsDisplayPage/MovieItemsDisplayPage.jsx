@@ -94,6 +94,13 @@ class MovieItemList extends Component {
 		this.setState(prevState => ({ filterOpen: !prevState.filterOpen }));
 	}
 
+	/**
+	 * @param {import('immutable').Map<any, any>} filters
+	 */
+	_updateFilters = filters => {
+		this.setState({ filters });
+	};
+
 	render () {
 		const { filterOpen, filters, page, sortBy, viewAs } = this.state;
 
@@ -110,6 +117,7 @@ class MovieItemList extends Component {
 				paginate={this._paginate}
 				sortItems={this._sortItems}
 				toggleFilters={this._toggleFilters}
+				updateFilters={this._updateFilters}
 				key="movie-items-container" />
 		);
 	}

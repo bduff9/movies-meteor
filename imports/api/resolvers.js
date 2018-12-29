@@ -1,14 +1,16 @@
-import { MovieItem, Movie } from './connectors';
+import { Op } from 'sequelize';
 
+import { MovieItem, Movie } from './connectors';
 import { DIGITAL_TYPES, FORMAT_TYPES } from './constants';
+import { ObjectScalarType } from './schema';
 
 /**
  * @type {import('graphql-tools').IResolvers<any, any>} resolvers
  */
 const resolvers = {
 	DigitalType: DIGITAL_TYPES,
-
 	FormatType: FORMAT_TYPES,
+	Object: ObjectScalarType,
 
 	Query: {
 		/**
@@ -39,12 +41,12 @@ const resolvers = {
 		 * @param {object} _
 		 * @param {object} args
 		 */
-		movieItems (_, { limit, skip: offset, order, ...args }) {
+		movieItems (_, { filters, limit, skip: offset, order }) {
 			return MovieItem.findAll({
 				limit,
 				offset,
 				order,
-				where: args,
+				where: parseToWhereClause(filters),
 			});
 		},
 
@@ -74,7 +76,7 @@ const resolvers = {
 		 * @param {{ id: number, isWatched?: string }} args
 		 */
 		markMovieWatched (_, { id, isWatched }) {
-			return MovieItem.findById(id)
+			return MovieItem.findByPk(id)
 				.then(movieItem => {
 					movieItem.orderToWatch = null;
 					movieItem.isWatched = isWatched || 'Y';
@@ -114,6 +116,34 @@ const resolvers = {
 			return Movie.update(args);
 		},
 	},
+};
+
+/**
+ * @param {Object} obj
+ * @returns {Object}
+ */
+const parseToWhereClause = obj => {
+	if (!obj) return undefined;
+
+	/**
+	 * @type {Object} whereObj
+	 */
+	const whereObj = {};
+
+	Object.keys(obj).forEach(field => {
+		/**
+		 * @type {{ operator: String, value: String }} filter
+		 */
+		const { operator, value } = obj[field];
+		/**
+		 * @type {symbol} op
+		 */
+		const op = Op[operator];
+
+		whereObj[field] = { [op]: value };
+	});
+
+	return whereObj;
 };
 
 export default resolvers;
