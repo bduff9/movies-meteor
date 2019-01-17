@@ -50,7 +50,7 @@
     "express": "4.16.4",
     "formik": "1.4.1",
     "graphql": "14.0.2",
-    "graphql-tag": "2.10.0",
+    "graphql-tag": "2.10.1",
     "graphql-tools": "4.0.3",
     "immutable": "4.0.0-rc.12",
     "meteor-node-stubs": "0.4.1",
