@@ -77,7 +77,7 @@
     "coveralls": "3.0.2",
     "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.7.1",
-    "eslint": "5.11.1",
+    "eslint": "5.12.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-you-dont-need-momentjs": "1.4.0",
