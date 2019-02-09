@@ -21,7 +21,8 @@
   },
   "plugins": [
     "import",
-    "react"
+    "react",
+    "react-hooks"
   ],
   "settings": {
     "react": {
@@ -71,6 +72,7 @@
       { "blankLine": "any", "prev": "export", "next": "*" },
       { "blankLine": "any", "prev": "*", "next": "export" }
     ],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react-hooks/rules-of-hooks": "error"
   }
 }
