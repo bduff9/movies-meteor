@@ -81,7 +81,7 @@
     "coveralls": "3.0.2",
     "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.9.1",
-    "eslint": "5.13.0",
+    "eslint": "5.15.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-react-hooks": "1.0.1",
