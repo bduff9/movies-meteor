@@ -1,0 +1,14 @@
+{
+    "local": {
+        "awscloudformation": {
+            "AuthRoleName": "movies-20190302213751-authRole",
+            "UnauthRoleArn": "arn:aws:iam::973828437967:role/movies-20190302213751-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::973828437967:role/movies-20190302213751-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "movies-20190302213751-deployment",
+            "UnauthRoleName": "movies-20190302213751-unauthRole",
+            "StackName": "movies-20190302213751",
+            "StackId": "arn:aws:cloudformation:us-east-2:973828437967:stack/movies-20190302213751/b9191210-3d65-11e9-8ca9-02edfbb31034"
+        }
+    }
+}

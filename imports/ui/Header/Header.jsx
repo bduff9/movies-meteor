@@ -3,6 +3,8 @@ import { Hero, HeroHeader, Navbar, NavbarBrand, NavbarEnd, NavbarItem, NavbarMen
 
 import './header.css';
 
+import { AuthConsumer } from '../../auth/auth.service';
+
 /**
  * @typedef {{}} Props
  */
@@ -21,7 +23,9 @@ class Header extends PureComponent {
 						</NavbarBrand>
 						<NavbarMenu>
 							<NavbarEnd>
-								<NavbarItem href="javascript:void(0);"></NavbarItem>
+								<AuthConsumer>
+									{({ isSignedIn, logout }) => (isSignedIn && <NavbarItem href="javascript:void(0);" onClick={logout}>Log out</NavbarItem>)}
+								</AuthConsumer>
 							</NavbarEnd>
 						</NavbarMenu>
 					</Navbar>

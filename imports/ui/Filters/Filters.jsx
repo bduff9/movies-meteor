@@ -137,7 +137,8 @@ class Filters extends PureComponent {
 	};
 
 	render () {
-		const { caseType, digitalType, formatType, is3D, isWatched, itemName, itemStatus, releaseDate } = this.state;
+		//const { caseType, digitalType, formatType, is3D, isWatched, itemStatus, releaseDate } = this.state;
+		const { itemName } = this.state;
 
 		return (
 			<Box>

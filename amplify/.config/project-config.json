@@ -1,0 +1,17 @@
+{
+    "projectName": "movies",
+    "version": "2.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react",
+        "config": {
+            "SourceDir": ".",
+            "DistributionDir": ".meteor/local",
+            "BuildCommand": "meteor build",
+            "StartCommand": "meteor npm start"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}

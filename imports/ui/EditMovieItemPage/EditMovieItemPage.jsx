@@ -131,7 +131,7 @@ export default graphql(movieItemByID, {
 	 */
 	options: ({ match }) => ({
 		variables: {
-			itemID: match.params.itemID,
+			itemID: parseInt(match.params.itemID, 10),
 		},
 	}),
 	// @ts-ignore
