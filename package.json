@@ -81,7 +81,7 @@
     "@types/react-fontawesome": "1.6.4",
     "@types/react-router-dom": "4.3.1",
     "@types/sequelize": "4.27.38",
-    "autoprefixer": "9.4.9",
+    "autoprefixer": "9.4.10",
     "babel-eslint": "10.0.1",
     "coveralls": "3.0.3",
     "enzyme": "3.9.0",
