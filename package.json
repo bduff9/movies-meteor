@@ -21,7 +21,9 @@
     "test:watch": "jest --watch --verbose",
     "test:coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test:meteor": "meteor test --driver-package=practicalmeteor:mocha --port=3004",
-    "precommit": "lint-staged && npm test"
+    "precommit": "lint-staged && npm test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -69,7 +71,8 @@
     "react-router-dom": "4.3.1",
     "sequelize": "4.43.0",
     "styled-components": "4.1.3",
-    "yup": "0.26.10"
+    "yup": "0.26.10",
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.3.4",
@@ -110,5 +113,6 @@
         ]
       }
     }
-  }
+  },
+  "snyk": true
 }
