@@ -47,7 +47,7 @@
     "apollo-cache-inmemory": "1.5.1",
     "apollo-link-http": "1.5.11",
     "apollo-server-express": "2.4.8",
-    "aws-amplify": "1.1.19",
+    "aws-amplify": "1.1.28",
     "aws-amplify-react": "2.3.0",
     "bloomer": "0.6.5",
     "bulma_scss": "0.7.2-rc.0",
