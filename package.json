@@ -54,7 +54,7 @@
     "bulmaswatch": "0.7.2",
     "date-fns": "2.0.0-alpha.27",
     "express": "4.16.4",
-    "formik": "1.5.1",
+    "formik": "1.5.7",
     "graphql": "14.1.1",
     "graphql-tag": "2.10.1",
     "graphql-tools": "4.0.4",
