@@ -48,7 +48,7 @@
     "apollo-link-http": "1.5.11",
     "apollo-server-express": "2.4.8",
     "aws-amplify": "1.1.19",
-    "aws-amplify-react": "2.3.0",
+    "aws-amplify-react": "2.3.8",
     "bloomer": "0.6.5",
     "bulma_scss": "0.7.2-rc.0",
     "bulmaswatch": "0.7.2",
