@@ -7,10 +7,19 @@ const { userName, password, url: host, port } = Meteor.settings.private.database
 
 // Create the connection
 const db = new Sequelize('media_tracker', userName, password, {
-	host,
-	port,
+	define: {
+		freezeTableName: true,
+		underscored: true,
+	},
 	dialect: 'mysql',
-	operatorsAliases: false,
+	dialectOptions: {},
+	host,
+	pool: {
+		max: 5,
+		min: 0,
+		idle: 20000,
+	},
+	port,
 });
 
 // Define the models
