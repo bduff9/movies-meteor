@@ -95,8 +95,8 @@
     "jest": "24.8.0",
     "jest-transform-css": "2.0.0",
     "lint-staged": "9.2.1",
-    "postcss": "<7.0.0",
-    "postcss-load-config": "<2.0.0",
+    "postcss": "6.0.23",
+    "postcss-load-config": "1.2.0",
     "stylelint": "10.1.0",
     "stylelint-config-standard": "18.3.0"
   },
