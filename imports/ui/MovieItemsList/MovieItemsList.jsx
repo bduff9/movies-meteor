@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {  Column, Columns, Content, Image, Media, MediaContent, MediaLeft, MediaRight } from 'bloomer';
+import { Column, Columns, Content, Image, Media, MediaContent, MediaLeft, MediaRight } from 'bloomer';
 
 import './movie-items-list.css';
 
@@ -12,12 +12,13 @@ import ToggleMovieItemWatched from '../ToggleMovieItemWatched/ToggleMovieItemWat
 
 /**
  * @param {{
+ *  isFilterOpen: boolean,
  *  loading: boolean,
  *  movieItems: import('../../api/models').MovieItem[],
  * }} Props
  */
-const MovieItemsList = ({ loading, movieItems }) => (
-	<MovieItemGridContainer isFluid>
+const MovieItemsList = ({ isFilterOpen = false, loading, movieItems }) => (
+	<MovieItemGridContainer isFluid offset={isFilterOpen ? '287px' : '104px'}>
 		<Columns isGrid isMultiline>
 			{loading ? (
 				<Column isSize="full">

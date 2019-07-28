@@ -78,7 +78,7 @@ class Filters extends PureComponent {
 
 		if (itemStatus) state.itemStatus = convertFilterToValue(itemStatus);
 
-		if (releaseDate) state.releaseDate = convertFilterToValue(releaseDate);
+		if (releaseDate && !releaseDate.isEmpty()) state.releaseDate = convertFilterToValue(releaseDate);
 
 		return state;
 	}
@@ -107,7 +107,7 @@ class Filters extends PureComponent {
 
 		if (itemStatus) filters.itemStatus = Filter('eq', itemStatus);
 
-		if (releaseDate) filters.releaseDate = Filter('between', releaseDate);
+		if (releaseDate && !releaseDate.isEmpty()) filters.releaseDate = Filter('between', releaseDate);
 
 		updateFilters(Map(filters));
 

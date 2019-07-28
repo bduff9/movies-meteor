@@ -2,7 +2,7 @@ import { Container } from 'bloomer';
 import styled from 'styled-components';
 
 const MovieItemGridContainer = styled(Container)`
-	height: calc(100vh - 52px - 52px);
+	height: ${({ offset = '104px' }) => `calc(100vh - ${offset});`}
 	overflow-y: auto;
 	padding: 1px 13px;
 `;

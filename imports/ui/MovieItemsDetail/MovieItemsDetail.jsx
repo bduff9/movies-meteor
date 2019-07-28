@@ -12,12 +12,13 @@ import ToggleMovieItemWatched from '../ToggleMovieItemWatched/ToggleMovieItemWat
 
 /**
  * @param {{
+ *  isFilterOpen: boolean,
  *  loading: boolean,
  *  movieItems: import('../../api/models').MovieItem[],
  * }} Props
  */
-const MovieItemsDetail = ({ loading, movieItems }) => (
-	<MovieItemGridContainer isFluid>
+const MovieItemsDetail = ({ isFilterOpen = false, loading, movieItems }) => (
+	<MovieItemGridContainer isFluid offset={isFilterOpen ? '287px' : '104px'}>
 		<Columns isGrid isMultiline>
 			{loading ? (
 				<Column isSize="full">

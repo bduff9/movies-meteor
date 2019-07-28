@@ -5,12 +5,12 @@
 
 // Global namespace
 :root {
-	--primary: $primary;
-	--grey-darker: hsl(0, 0%, 21%);
-	--grey-dark: hsl(0, 0%, 29%);
-	--grey: hsl(0, 0%, 48%);
-	--grey-light: hsl(0, 0%, 71%);
-	--grey-lighter: hsl(0, 0%, 86%);
+  --primary: $primary;
+  --grey-darker: hsl(0, 0%, 21%);
+  --grey-dark: hsl(0, 0%, 29%);
+  --grey: hsl(0, 0%, 48%);
+  --grey-light: hsl(0, 0%, 71%);
+  --grey-lighter: hsl(0, 0%, 86%);
 }
 
 html,
@@ -19,119 +19,118 @@ body,
 .full-coverage {
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 // App layout
 
 // Pages
 .login-page {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	background: #F7F7F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #F7F7F7;
 
-	.login-card {
-		background: #fff;
-		box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
-		border-radius: 10px;
+  .login-card {
+    background: #fff;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
+    border-radius: 10px;
 
-		.card-header {
-			background-color: $primary;
-			padding: 2rem;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-		}
+    .card-header {
+      background-color: $primary;
+      padding: 2rem;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
 
-		.content {
-			padding: 3rem 2.5rem 3rem;
-		}
+    .content {
+      padding: 3rem 2.5rem 3rem;
+    }
 
-		.input,
-		.toggle-password {
-			border: none;
-			border-bottom: 1px solid var(--grey-lighter);
-			transition: all .5s;
+    .input,
+    .toggle-password {
+      border: none;
+      border-bottom: 1px solid var(--grey-lighter);
+      transition: all .5s;
 
-			&:hover {
-				border-color: var(--grey);
-			}
+      &:hover {
+        border-color: var(--grey);
+      }
 
-			&:active,
-			&:focus {
-				border-color: $primary;
-			}
-		}
+      &:active,
+      &:focus {
+        border-color: $primary;
+      }
+    }
 
-		.level {
-			color: var(--grey-light);
-			margin-bottom: 1.5rem;
+    .level {
+      color: var(--grey-light);
+      margin-bottom: 1.5rem;
 
-			.level-left {
-				color: var(--grey-light);
-				font-size: 0.8rem;
+      .level-left {
+        color: var(--grey-light);
+        font-size: 0.8rem;
 
-				& span {
-					margin-left: 0.5rem;
-				}
+        & span {
+          margin-left: 0.5rem;
+        }
 
-				.checkbox {
-					display: none;
-				}
+        .checkbox {
+          display: none;
+        }
 
-				.checkbox + label {
-					background-color: #fafafa;
-					border: 1px solid var(--grey-lighter);
-					box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-					padding: 7px;
-					border-radius: 3px;
-					display: inline-block;
-					position: relative;
-					cursor: pointer;
-					margin-bottom: 0;
-				}
+        .checkbox + label {
+          background-color: #fafafa;
+          border: 1px solid var(--grey-lighter);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+          padding: 7px;
+          border-radius: 3px;
+          display: inline-block;
+          position: relative;
+          cursor: pointer;
+          margin-bottom: 0;
+        }
 
-				.checkbox:checked + label {
-					background-color: #e9ecee;
-				}
+        .checkbox:checked + label {
+          background-color: #e9ecee;
+        }
 
-				.checkbox:checked + label:after {
-					content: '\2714';
-					font-size: 11px;
-					position: absolute;
-					top: 0;
-					left: 3px;
-					color: var(--grey-light);
-				}
-			}
+        .checkbox:checked + label:after {
+          content: '\2714';
+          font-size: 11px;
+          position: absolute;
+          top: 0;
+          left: 3px;
+          color: var(--grey-light);
+        }
+      }
 
-			.login-link {
-				font-size: 0.8rem;
-			}
-		}
+      .login-link {
+        font-size: 0.8rem;
+      }
+    }
 
-		.login-button {
-			font-size: 1.2rem;
-			border-radius: 4rem;
-			display: block;
-			width: 100%;
-			background: transparent;
-			transition: color .5s, border-color .5s;
+    .login-button {
+      font-size: 1.2rem;
+      border-radius: 4rem;
+      display: block;
+      width: 100%;
+      background: transparent;
+      transition: color .5s, border-color .5s;
 
-			&:active {
-				transform: translateY(1px);
-			}
-		}
+      &:active {
+        transform: translateY(1px);
+      }
+    }
 
-		input:focus,
-		select:focus,
-		textarea:focus,
-		button:focus {
-			outline: none;
-			box-shadow: none;
-		}
-	}
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
 }
 
 // Components

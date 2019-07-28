@@ -55,18 +55,21 @@ const MovieItemsContainer = ({ data, filterOpen, filters, page, viewAs, updateFi
 			{filterOpen && <Filters filters={filters} updateFilters={updateFilters} key="filters" />}
 			{viewAs === 'Grid' && (
 				<MovieItemsGrid
+					isFilterOpen={filterOpen}
 					loading={loading}
 					movieItems={movieItems}
 					key="movieItemsGrid" />
 			)}
 			{viewAs === 'List' && (
 				<MovieItemsList
+					isFilterOpen={filterOpen}
 					loading={loading}
 					movieItems={movieItems}
 					key="movieItemsList" />
 			)}
 			{viewAs === 'Detail' && (
 				<MovieItemsDetail
+					isFilterOpen={filterOpen}
 					loading={loading}
 					movieItems={movieItems}
 					key="movieItemsDetail" />
