@@ -77,7 +77,7 @@
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
     "@types/autoprefixer": "9.5.0",
-    "@types/enzyme": "3.10.0",
+    "@types/enzyme": "3.10.4",
     "@types/enzyme-adapter-react-16": "1.0.5",
     "@types/eslint": "4.16.6",
     "@types/express": "4.17.0",
