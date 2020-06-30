@@ -67,7 +67,7 @@
     "react-apollo": "2.5.8",
     "react-dom": "16.8.6",
     "react-router-dom": "5.0.1",
-    "sequelize": "5.11.0",
+    "sequelize": "5.22.3",
     "styled-components": "4.3.2",
     "yup": "0.27.0"
   },
